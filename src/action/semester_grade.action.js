@@ -45,3 +45,13 @@ export const deleteSemester_Grade = (id) => async (dispatch) => {
   }
 };
 
+export const getOneSemesterGrade = (semester_grade_id) => async (dispatch) => {
+  try {
+    const { data } = await api.fetchOne(semester_grade_id);
+    // console.log(data);
+    dispatch({ type: FETCH_ALL, payload: data });
+    console.log(data);
+  } catch (error) {
+    console.log(error.message);
+  }
+};

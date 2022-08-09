@@ -49,9 +49,7 @@ function Add_Course_Offering() {
 
 
     return (
-        <div style={{
-            backgroundColor: 'white', height: '100vh', border: '1px solid blue' }}>
-            <Header />
+        <div>
         <form autoComplete="off" noValidate onSubmit={handleSubmit}>
           <CardContent
             component="form"
@@ -69,31 +67,31 @@ function Add_Course_Offering() {
         >
             <Grid container spacing={3}>
                 <Grid item xs={6} md={4} sm={6}>
-                        < TextField id="outlined-basic" style={{ width: '300px', align: 'left' }} label="Section" variant="outlined" size="small"
+                        < TextField id="outlined-basic" style={{ width: '230px', align: 'left' }} label="Section" variant="outlined" size="small"
                         name='section'
                                 onChange={(e) => setCourseOfferingData({ ...courseOfferingData, section: e.target.value })}
                         />
                         </Grid>
                         <Grid item xs={6} md={4} sm={6}>
-                        < TextField id="outlined-basic" style={{ width: '300px', align: 'left' }} label="Name" variant="outlined" size="small"
+                        < TextField id="outlined-basic" style={{ width: '230px', align: 'left' }} label="Name" variant="outlined" size="small"
                         name='name'
                                 onChange={(e) => setCourseOfferingData({ ...courseOfferingData, name: e.target.value })}
                         />
                     </Grid>
                     <Grid item xs={6} md={4} sm={6}>
-                        < TextField id="outlined-basic" style={{ width: '300px', align: 'left' }} label="Academic Year" variant="outlined" size="small"
+                        < TextField id="outlined-basic" style={{ width: '230px', align: 'left' }} label="Academic Year" variant="outlined" size="small"
                         name='academic_year'
                                 onChange={(e) => setCourseOfferingData({ ...courseOfferingData, academic_year: e.target.value })}
                         />
                     </Grid>
                     <Grid item xs={6} md={4} sm={6}>
-                        < TextField id="outlined-basic" style={{ width: '300px', align: 'left' }} label="Attendance Year" variant="outlined" size="small"
+                        < TextField id="outlined-basic" style={{ width: '230px', align: 'left' }} label="Attendance Year" variant="outlined" size="small"
                         name='attendance_year'
                                 onChange={(e) => setCourseOfferingData({ ...courseOfferingData, attendance_year: e.target.value })}
                         />
                     </Grid>
                     <Grid item xs={6} md={4} sm={6}>
-                    <FormControl  style={{ float:'left', marginLeft:'90px', width:'300px'}}   size="small">
+                    <FormControl  style={{ float:'left',width:'230px'}}   size="small">
                     <InputLabel id="demo-simple-select-label">Semester</InputLabel>
                     <Select
                     labelId="demo-simple-select-label"
@@ -111,7 +109,7 @@ function Add_Course_Offering() {
                 </FormControl>
                 </Grid>
                 <Grid item xs={6} md={4} sm={6}>
-                        <FormControl  style={{ float:'left', marginLeft:'90px', width:'300px'}}   size="small">
+                        <FormControl  style={{ float:'left', width:'230px'}}   size="small">
                     <InputLabel id="demo-simple-select-label">Course Breakdown Id</InputLabel>
                     <Select
                     labelId="demo-simple-select-label"

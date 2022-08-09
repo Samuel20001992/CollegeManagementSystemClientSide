@@ -101,15 +101,15 @@ const headCells = [
   {
     id: 'faculty',
     numeric: false,
-    disablePadding: true,
+    disablePadding: false,
     label: 'Faculty',
   },
-  {
-    id: 'department',
-    numeric: true,
-    disablePadding: false,
-    label: 'Department',
-  },
+  // {
+  //   id: 'department',
+  //   numeric: true,
+  //   disablePadding: false,
+  //   label: 'Department',
+  // },
   {
     id: 'admission_classification',
     numeric: true,
@@ -132,7 +132,7 @@ const headCells = [
     id: 'Start Date',
     numeric: true,
     disablePadding: false,
-    label: 'End Date',
+    label: 'Start Date',
   },
   {
     id: 'total_credit',
@@ -164,7 +164,7 @@ function EnhancedTableHead(props) {
   return (
     <TableHead>
       <TableRow>
-        <TableCell padding="checkbox">
+        {/* <TableCell padding="checkbox">
           <Checkbox
             color="primary"
             indeterminate={numSelected > 0 && numSelected < rowCount}
@@ -174,7 +174,7 @@ function EnhancedTableHead(props) {
               'aria-label': 'select all desserts',
             }}
           />
-        </TableCell>
+        </TableCell> */}
         {headCells.map((headCell) => (
           <TableCell
             key={headCell.id}
@@ -236,18 +236,7 @@ const EnhancedTableToolbar = (props) => {
         </Typography>
       ) : (
       <div>
-        <Typography
-          // sx={{ flex: '1 1 100%' }}
-          variant="h6"
-          id="tableTitle"
-          component="div"
-          style={{float:'left'}}
-        >
-          Curriculum Table
-        </Typography>
-          <Link to='/Add_Curriculum' style={{textDecoration:'none'}}>
-                <Button variant='contained'  style={{float:'right', marginLeft:'900px'}} color='primary'>Add New</Button>       
-            </Link>       
+            
       </div>
         
       )}
@@ -351,9 +340,9 @@ export default function Curriculum_Table() {
     dispatch(deleteCurriculum(id))
   }
   return (
-    <Box sx={{ width: '90%' }}>
-      <Paper sx={{ width: '90%', mb: 2,ml:2,mr:2,mt:2}}>
-        <EnhancedTableToolbar numSelected={selected.length} />
+    <Box sx={{ width: '100%' }}>
+      <Paper sx={{ width: '100%', mb: 2,ml:2,mr:2,mt:2}}>
+        {/* <EnhancedTableToolbar numSelected={selected.length} /> */}
         <TableContainer>
           <Table
             sx={{ minWidth: 750 }}
@@ -387,7 +376,7 @@ export default function Curriculum_Table() {
                       key={row.name}
                       selected={isItemSelected}
                     >
-                      <TableCell padding="checkbox">
+                      {/* <TableCell padding="checkbox">
                         <Checkbox
                           color="primary"
                           checked={isItemSelected}
@@ -395,21 +384,21 @@ export default function Curriculum_Table() {
                             'aria-labelledby': labelId,
                           }}
                         />
-                      </TableCell>
+                      </TableCell> */}
                       <TableCell align="left">{row.faculty}</TableCell>
-                      <TableCell align="left">{row.department}</TableCell>
+                      {/* <TableCell align="left">{row.department}</TableCell> */}
                       <TableCell align="left">{row.admission_classification}</TableCell>
                       <TableCell align="left">{row.program}</TableCell> 
                       <TableCell align="left">{row.field_of_study}</TableCell> 
-                      <TableCell align="left">{row.start_date}</TableCell> 
+                      <TableCell align="left">{row.approved_year}</TableCell> 
                       <TableCell align="left">{row.total_credit}</TableCell>
                       <TableCell align="left">{row.duration}</TableCell> 
                       <TableCell align="left">
-                        <VisibilityIcon color="primary" />
+                        {/* <VisibilityIcon color="primary" /> */}
                         <DeleteIcon color="primary" onClick={(e) => {
                           handleDelete(row._id)
                         }} />
-                        <EditIcon color="primary"/>
+                        {/* <EditIcon color="primary"/> */}
                       </TableCell>
                     </TableRow>
                   );

@@ -43,11 +43,11 @@ function Add_Section() {
   const handleSubmit = () => {
     for (let i = 1; i <= y; i++)
       section.section_name = section.attendance_year + section.department[0] + section.department[1] + i;
-     dispatch(createSection(section))
+    section.number_of_students = z; 
+    dispatch(createSection(section))
   }
   return (
     <div>
-      <Header/>
       <Grid container spacing={3} style={{marginTop:'50px'}}>
             <Grid item xs={6} md={4} sm={6}>
                 <TextField id="outlined-basic" style={{ width: '300px', align: 'left' }}
@@ -105,16 +105,13 @@ function Add_Section() {
           
               <Button variant='contained' color='primary' style={{marginRight:'50px', width:'200px'}} onClick={handleSubmit}>Confirm</Button>
           
-              <Button variant='contained' color='primary' style={{width:'200px'}} >Cancel</Button>
+              {/* <Button variant='contained' color='primary' style={{width:'200px'}} >Cancel</Button> */}
           </Grid>
                         </Box>
                         </Modal>
             
         </Grid>
-        <Grid item xs={6} md={4} sm={6} style={{marginRight:'250px'}}>
-          
-              <Button variant='contained' color='primary' >Cancel</Button>
-          </Grid>
+        
             
         
             

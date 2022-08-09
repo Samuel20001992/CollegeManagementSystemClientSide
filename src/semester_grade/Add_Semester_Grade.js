@@ -82,18 +82,18 @@ function Add_Semester_Grade() {
  
   return (
       <Paper >
-          <Header/>
       <Grid container spacing={2} style={{ marginTop: '50px' }}>
         
         <Grid item xs={4} md={3} sm={4}>
-                <FormControl  style={{ float:'left', marginLeft:'80px', width:'300px'}}   size="small">
+                <FormControl  style={{ float:'left', marginLeft:'80px', width:'230px'}}   size="small">
                     <InputLabel id="demo-simple-select-label">Attendance Year</InputLabel>
+                    
                     <Select
                     labelId="demo-simple-select-label"
                     id="demo-simple-select"
                     value={search.attendance_year}
-                            label="Learning Modality"
-                   onChange={(e) => {
+                      label="Attendance Year"
+                     onChange={(e) => {
                               setSearch({...search, attendance_year: e.target.value})
                             }}
                         >
@@ -106,13 +106,14 @@ function Add_Semester_Grade() {
           </FormControl>
         </Grid>
         <Grid item xs={4} md={3} sm={4}>
-                <FormControl  style={{ float:'left', marginLeft:'80px', width:'300px'}}   size="small">
+                <FormControl  style={{ float:'left', marginLeft:'80px', width:'230px'}}   size="small">
                     <InputLabel id="demo-simple-select-label">Semester</InputLabel>
                     <Select
                     labelId="demo-simple-select-label"
                     id="demo-simple-select"
                     value={search.semester}
                             label="Semester"
+                            name="semester"
                            onChange={(e) => {
                               setSearch({...search, semester: e.target.value})
                             }}
@@ -125,7 +126,7 @@ function Add_Semester_Grade() {
           </FormControl>
         </Grid>
         <Grid item xs={4} md={3} sm={4}>
-                <FormControl  style={{ float:'left', marginLeft:'80px', width:'300px'}}   size="small">
+                <FormControl  style={{ float:'left', marginLeft:'80px', width:'230px'}}   size="small">
                     <InputLabel id="demo-simple-select-label">Student_id</InputLabel>
                     <Select
                     labelId="demo-simple-select-label"
@@ -138,7 +139,7 @@ function Add_Semester_Grade() {
                         >
                             <MenuItem value={'1'}>1</MenuItem>
                             <MenuItem value={'2'}>2</MenuItem>
-                            <MenuItem value={'2'}>2</MenuItem>
+                            <MenuItem value={'3'}>3</MenuItem>
                             
                     </Select>
           </FormControl>

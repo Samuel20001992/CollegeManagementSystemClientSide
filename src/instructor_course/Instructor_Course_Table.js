@@ -30,6 +30,7 @@ import { visuallyHidden } from '@mui/utils';
 import Modal from '@mui/material/Modal';
 import { deleteInstructor_Course, getInstructor_Courses } from '../action/instructor_course.action';
 import { Link } from 'react-router-dom';
+import { updateInstructor_Course } from '../api/instructor_course.api';
 const style = {
     position: 'absolute',
     top: '50%',
@@ -106,6 +107,12 @@ const headCells = [
     label: 'Insturctor Id',
   },
   {
+    id: 'course',
+    numeric: true,
+    disablePadding: false,
+    label: 'Course ',
+    },
+  {
     id: 'course_code',
     numeric: true,
     disablePadding: false,
@@ -118,12 +125,17 @@ const headCells = [
     label: 'Section',
     },
   {
-    id: 'course_completed',
+    id: 'action',
     numeric: true,
     disablePadding: false,
-    label: 'Course Completed',
+    label: 'Action',
   },
-  
+  {
+    id: 'operation',
+    numeric: true,
+    disablePadding: false,
+    label: 'Operation',
+  },
  
 ];
 
@@ -206,11 +218,8 @@ const EnhancedTableToolbar = (props) => {
           component="div"
           style={{float:'left'}}
         >
-          Instructor Course Assignment
-        </Typography>
-          <Link to='/Add_Instructor_Course' style={{textDecoration:'none'}}>
-                <Button variant='contained'  style={{float:'right', marginLeft:'900px'}} color='primary'>Add New</Button>       
-            </Link>      
+          Instructor Course 
+        </Typography>     
       </div>
         
       )}
@@ -237,7 +246,7 @@ EnhancedTableToolbar.propTypes = {
   numSelected: PropTypes.number.isRequired,
 };
 
-export default function Instructor_Course_Table() {
+export default function Instructor_Course_Table(props) {
   const [order, setOrder] = React.useState('asc');
   const [orderBy, setOrderBy] = React.useState('First Name');
   const [selected, setSelected] = React.useState([]);
@@ -311,11 +320,22 @@ export default function Instructor_Course_Table() {
   const handleDelete = (id) => {
     dispatch(deleteInstructor_Course(id))
   }
+  let status;
+
+  const handleUpdate = (row) =>{
+    if(status == 'active'){
+      row.status = 'inactive';
+    }
+    else{
+      row.status ='active';
+    }
+    dispatch(updateInstructor_Course(row._id, row));
+  }
   
   return (
     <Box sx={{ width: '90%' }}>
       <Paper sx={{ width: '90%', mb: 2,ml:2,mr:2,mt:2}}>
-        <EnhancedTableToolbar numSelected={selected.length} />
+        {/* <EnhancedTableToolbar numSelected={selected.length} /> */}
         <TableContainer>
           <Table
             sx={{ minWidth: 750 }}
@@ -338,30 +358,84 @@ export default function Instructor_Course_Table() {
                 .map((row, index) => {
                   const isItemSelected = isSelected(row.email);
                   const labelId = `enhanced-table-checkbox-${index}`;
-
-                  return (
-                    <TableRow
-                      hover
-                      onClick={(event) => handleClick(event, row.email)}
-                      role="checkbox"
-                      aria-checked={isItemSelected}
-                      tabIndex={-1}
-                      key={row.name}
-                      selected={isItemSelected}
-                    >
-                      
-                      <TableCell align="left">{row.instructor_id}</TableCell>
-                      <TableCell align="left">{row.course_code}</TableCell>
-                      <TableCell align="left">{row.section}</TableCell>
-                      <TableCell align="left">{row.course_completed}</TableCell>
-                      <TableCell align="left">
-                        <VisibilityIcon color="primary" />
-                        <DeleteIcon color="primary" onClick={(e) => {
-                          handleDelete(row._id)
-                        } } />
-                        <EditIcon color="primary"/></TableCell>
-                    </TableRow>
-                  );
+                  if(props.status == 'active'){
+                      if(row.status == 'active'){
+                        return (
+                          <TableRow
+                          hover
+                          onClick={(event) => handleClick(event, row.email)}
+                          role="checkbox"
+                          aria-checked={isItemSelected}
+                          tabIndex={-1}
+                          key={row.name}
+                          selected={isItemSelected}
+                        >
+                          
+                          <TableCell align="left">{row.instructor_id}</TableCell>
+                          <TableCell align="left">{row.course_title}</TableCell>
+                          <TableCell align="left">{row.course_code}</TableCell>
+                          <TableCell align="left">{row.section}</TableCell>
+                          <TableCell align="left">
+                            <Button color='primary' variant='contained'
+                                onClick={(e)=>{
+                                  status = props.status;
+                                  handleUpdate(row);
+                                }}
+                            >
+                              {
+                                props.status == 'active' ? `Inactive` : `Active`
+                            } </Button>
+                          </TableCell>
+                          <TableCell align="left">
+                            {/* <VisibilityIcon color="primary" /> */}
+                            <DeleteIcon color="primary" onClick={(e) => {
+                              handleDelete(row._id)
+                            } } />
+                            
+                            </TableCell>
+                        </TableRow>
+                        );
+                      }
+                  } else{
+                    if(row.status != 'active'){
+                      return (
+                        <TableRow
+                          hover
+                          onClick={(event) => handleClick(event, row.email)}
+                          role="checkbox"
+                          aria-checked={isItemSelected}
+                          tabIndex={-1}
+                          key={row.name}
+                          selected={isItemSelected}
+                        >
+                          
+                          <TableCell align="left">{row.instructor_id}</TableCell>
+                          <TableCell align="left">{row.course_title}</TableCell>
+                          <TableCell align="left">{row.course_code}</TableCell>
+                          <TableCell align="left">{row.section}</TableCell>
+                          <TableCell align="left">
+                            <Button color='primary' variant='contained'
+                                onClick={(e)=>{
+                                  status = props.status;
+                                  handleUpdate(row);
+                                }}
+                            >
+                              {
+                                props.status == 'active' ? `Inactive` : `Active`
+                            } </Button>
+                          </TableCell>
+                          <TableCell align="left">
+                            {/* <VisibilityIcon color="primary" /> */}
+                            <DeleteIcon color="primary" onClick={(e) => {
+                              handleDelete(row._id)
+                            } } />
+                            
+                            </TableCell>
+                        </TableRow>
+                      );
+                    }
+                  }
+                  
                 })}
               {emptyRows > 0 && (
                 <TableRow

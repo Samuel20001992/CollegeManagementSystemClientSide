@@ -42,3 +42,14 @@ export const deleteCourse_Registration = (id) => async (dispatch) => {
     console.log(error.message);
   }
 };
+
+export const getOneCourse = (course_id) => async (dispatch) => {
+  try {
+    const { data } = await api.fetchOne(course_id);
+    // console.log(data);
+    dispatch({ type: FETCH_ALL, payload: data });
+    console.log(data);
+  } catch (error) {
+    console.log(error.message);
+  }
+};

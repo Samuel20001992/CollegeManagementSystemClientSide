@@ -404,7 +404,7 @@ export default function Student_Course_Registration_Table() {
       <form autoComplete="off" noValidate>
         <Grid container spacing={1}>
           <Grid item xs={4} md={4} sm={4}>
-          < TextField id="outlined-basic" style={{ width: '300px', align: 'left' }} label="Student Id" variant="outlined" size="small"
+          < TextField id="outlined-basic" style={{ width: '230px', align: 'left' }} label="Student Id" variant="outlined" size="small"
               onChange={(e) => {
                 setSlip({ ...slip, student_id: e.target.value });
                 setRegistration({ ...registration, student_id: e.target.value })
@@ -413,33 +413,33 @@ export default function Student_Course_Registration_Table() {
                         />
         </Grid>
           <Grid item xs={4} md={4} sm={4}>
-          < TextField id="outlined-basic" style={{ width: '300px', align: 'left' }} label="Student First Name" variant="outlined" size="small"
+          < TextField id="outlined-basic" style={{ width: '230px', align: 'left' }} label="Student First Name" variant="outlined" size="small"
                         onChange={(e) => setSlip({ ...slip, student_first_name: e.target.value })}
                         />
         </Grid>
         <Grid item xs={4} md={4} sm={4}>
-          < TextField id="outlined-basic" style={{ width: '300px', align: 'left' }} label="Student Middle Name" variant="outlined" size="small"
+          < TextField id="outlined-basic" style={{ width: '230px', align: 'left' }} label="Student Middle Name" variant="outlined" size="small"
                         onChange={(e) => setSlip({ ...slip, student_middle_name: e.target.value })}
                         />
         </Grid>
         <Grid item xs={4} md={4} sm={4}>
-          < TextField id="outlined-basic" style={{ width: '300px', align: 'left' }} label="Student Last Name" variant="outlined" size="small"
+          < TextField id="outlined-basic" style={{ width: '230px', align: 'left' }} label="Student Last Name" variant="outlined" size="small"
                         onChange={(e) => setSlip({ ...slip, student_last_name: e.target.value })}
                         />
         </Grid>
         <Grid item xs={4} md={4} sm={4}>
-          < TextField id="outlined-basic" style={{ width: '300px', align: 'left' }} label="Stream" variant="outlined" size="small"
+          < TextField id="outlined-basic" style={{ width: '230px', align: 'left' }} label="Stream" variant="outlined" size="small"
                         onChange={(e) => setSlip({ ...slip, stream: e.target.value })}
                         />
         </Grid>
         <Grid item xs={4} md={4} sm={4}>
-          < TextField id="outlined-basic" style={{ width: '300px', align: 'left' }} label="Attendance Year" variant="outlined" size="small"
+          < TextField id="outlined-basic" style={{ width: '230px', align: 'left' }} label="Attendance Year" variant="outlined" size="small"
                         onChange={(e) =>{ setSlip({ ...slip, attendance_year: e.target.value })
                                         setRegistration({...registration, attendance_year: e.target.value })}}           
             />
         </Grid>
         <Grid item xs={4} md={4} sm={4}>
-          < TextField id="outlined-basic" style={{ width: '300px', align: 'left' }} label="Accademic Year" variant="outlined" size="small"
+          < TextField id="outlined-basic" style={{ width: '230px', align: 'left' }} label="Accademic Year" variant="outlined" size="small"
               onChange={(e) => {
                 setSlip({ ...slip, academic_year: e.target.value })
                 setRegistration({ ...registration, academic_year: e.target.value })
@@ -447,7 +447,7 @@ export default function Student_Course_Registration_Table() {
                         />
         </Grid>
         <Grid item xs={4} md={4} sm={4}>
-          < TextField id="outlined-basic" style={{ width: '300px', align: 'left' }} label="Semester" variant="outlined" size="small"
+          < TextField id="outlined-basic" style={{ width: '230px', align: 'left' }} label="Semester" variant="outlined" size="small"
               onChange={(e) => {
                 setSlip({ ...slip, semester: e.target.value })
                 setRegistration({ ...registration, semester: e.target.value })
@@ -455,13 +455,13 @@ export default function Student_Course_Registration_Table() {
                         />
         </Grid>
         <Grid item xs={4} md={4} sm={4}>
-          < TextField id="outlined-basic" style={{ width: '300px', align: 'left' }} label="Program" variant="outlined" size="small"
+          < TextField id="outlined-basic" style={{ width: '230px', align: 'left' }} label="Program" variant="outlined" size="small"
                         onChange={(e) => setSlip({ ...slip, program: e.target.value })}
                         />
         </Grid>
         </Grid>
         
-      <Paper sx={{ width: '70%', mb: 2,ml:2,mr:2,mt:2}}>
+      <Paper sx={{ width: '100%', mb: 2,ml:2,mr:2,mt:2}}>
         <EnhancedTableToolbar numSelected={selected.length} />
         <TableContainer>
           <Table

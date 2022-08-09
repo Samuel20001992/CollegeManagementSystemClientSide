@@ -41,3 +41,13 @@ export const deleteStudent = (id) => async (dispatch) => {
     console.log(error.message);
   }
 };
+
+export const getOneStudent = (id, department) => async (dispatch) => {
+  try {
+    const { data } = await api.fetchOne(id, department);
+    dispatch({ type: FETCH_ALL, payload: data });
+    console.log(data);
+  } catch (error) {
+    console.log(error.message);
+  }
+};

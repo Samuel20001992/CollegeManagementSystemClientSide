@@ -101,8 +101,8 @@ function stableSort(array, comparator) {
 const headCells = [
   {
     id: 'course_code',
-    numeric: false,
-    disablePadding: true,
+    numeric: true,
+    disablePadding: false,
     label: 'Course Code',
   },
   {
@@ -142,12 +142,6 @@ const headCells = [
     label: 'Course Option',
     },
   {
-    id: 'status',
-    numeric: true,
-    disablePadding: false,
-    label: 'Status',
-  },
-  {
     id: 'opertations',
     numeric: true,
     disablePadding: false,
@@ -165,7 +159,7 @@ function EnhancedTableHead(props) {
   return (
     <TableHead>
       <TableRow>
-        <TableCell padding="checkbox">
+        {/* <TableCell padding="checkbox">
           <Checkbox
             color="primary"
             indeterminate={numSelected > 0 && numSelected < rowCount}
@@ -175,7 +169,7 @@ function EnhancedTableHead(props) {
               'aria-label': 'select all desserts',
             }}
           />
-        </TableCell>
+        </TableCell> */}
         {headCells.map((headCell) => (
           <TableCell
             key={headCell.id}
@@ -351,9 +345,9 @@ export default function Course_Table() {
     dispatch(deleteCourse_Registration(id))
   }
   return (
-    <Box sx={{ width: '90%' }}>
-      <Paper sx={{ width: '90%', mb: 2,ml:2,mr:2,mt:2}}>
-        <EnhancedTableToolbar numSelected={selected.length} />
+    <Box sx={{ width: '100%' }}>
+      <Paper sx={{ width: '100%', mb: 2,ml:2,mr:2,mt:2}}>
+        {/* <EnhancedTableToolbar numSelected={selected.length} /> */}
         <TableContainer>
           <Table
             sx={{ minWidth: 750 }}
@@ -387,7 +381,7 @@ export default function Course_Table() {
                       key={row.name}
                       selected={isItemSelected}
                     >
-                      <TableCell padding="checkbox">
+                      {/* <TableCell padding="checkbox">
                         <Checkbox
                           color="primary"
                           checked={isItemSelected}
@@ -395,19 +389,18 @@ export default function Course_Table() {
                             'aria-labelledby': labelId,
                           }}
                         />
-                      </TableCell>
+                      </TableCell> */}
                       <TableCell align="left">{row.course_code}</TableCell>
                       <TableCell align="left">{row.credit_hour}</TableCell>
                       <TableCell align="left">{row.lecture_hour}</TableCell>
                       <TableCell align="left">{row.practical_hour}</TableCell>
                       <TableCell align="left">{row.tutorial_hour}</TableCell> 
                       <TableCell align="left">{row.course_category}</TableCell> 
-                      <TableCell align="left">{row.course_option}</TableCell> 
-                      <TableCell align="left">{row.status}</TableCell> 
+                      <TableCell align="left">{row.course_category_option}</TableCell> 
                       <TableCell align="left">
-                         <VisibilityIcon color="primary" />
+                         {/* <VisibilityIcon color="primary" /> */}
                         <DeleteIcon color="primary" onClick={(e)=>{handleDelete(row._id)}} />
-                        <EditIcon color="primary"/>
+                        {/* <EditIcon color="primary"/> */}
                       </TableCell>
                     </TableRow>
                   );

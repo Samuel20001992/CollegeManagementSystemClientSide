@@ -81,43 +81,43 @@ const headCells = [
   {
     id: 'Student Id',
     numeric: false,
-    disablePadding: true,
+    disablePadding: false,
     label: 'student_id',
   },
   {
     id: 'Reason',
     numeric: false,
-    disablePadding: true,
+    disablePadding: false,
     label: 'Reason',
   },
   {
     id: 'Store',
     numeric: false,
-    disablePadding: true,
+    disablePadding: false,
     label: 'Store',
     },
   {
     id: 'finanace',
     numeric: false,
-    disablePadding: true,
+    disablePadding: false,
     label: 'Finanace',
   },
   {
     id: 'Department',
     numeric: false,
-    disablePadding: true,
+    disablePadding: false,
     label: 'Department',
   },
   {
     id: 'Library',
     numeric: false,
-    disablePadding: true,
+    disablePadding: false,
     label: 'Library',
     },
   {
     id: 'Registarar',
     numeric: false,
-    disablePadding: true,
+    disablePadding: false,
     label: 'Registarar',
   },
   
@@ -336,8 +336,8 @@ export default function Clearance() {
           >Save</Button>
         </Grid>
         </Grid>
-      <Paper sx={{ width: '90%', mb: 2,ml:2,mr:2,mt:2}}>
-        <EnhancedTableToolbar numSelected={selected.length} />
+      <Paper sx={{ width: '100%', mb: 2,ml:2,mr:2,mt:2}}>
+        {/* <EnhancedTableToolbar numSelected={selected.length} /> */}
         <TableContainer>
           <Table
             sx={{ minWidth: 750 }}

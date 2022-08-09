@@ -77,12 +77,7 @@ const headCells = [
     disablePadding: true,
     label: 'S/N',
   },
-  {
-    id: 'name',
-    numeric: false,
-    disablePadding: true,
-    label: 'Name',
-  },
+ 
  
   {
     id: 'student_id',
@@ -335,9 +330,8 @@ export default function Graduate_Students() {
                       selected={isItemSelected}
                     >
                       <TableCell padding="checkbox">
-                        {num += 1}
+                        {row.semester_grade_id}
                       </TableCell>
-                      <TableCell align="left">{row.name}</TableCell>
                       <TableCell align="left">{row.student_id}</TableCell>
                       <TableCell align="left">Night</TableCell> 
                       <TableCell align="left">{row.CGPA}</TableCell>

@@ -47,9 +47,7 @@ const dispatch = useDispatch();
     dispatch(createDrop(dropData)); 
   }
     return (
-        <div style={{
-            backgroundColor: 'white', height: '100vh', border: '1px solid blue' }}>
-            <Header />
+        <div>
         <form autoComplete="off" noValidate onSubmit={handleSubmit}>
           <CardContent
             component="form"
@@ -67,12 +65,12 @@ const dispatch = useDispatch();
         >
             <Grid container spacing={3}>
                 <Grid item xs={6} md={4} sm={6}>
-                        < TextField id="outlined-basic" style={{ width: '300px', align: 'left' }} label="Student Id" variant="outlined" size="small"
+                        < TextField id="outlined-basic" style={{ width: '230px', align: 'left' }} label="Student Id" variant="outlined" size="small"
                      onChange={(e) => setDropData({ ...dropData, student_id: e.target.value })}
                         />
                     </Grid>
                     <Grid item xs={6} md={4} sm={6}>
-                <FormControl  style={{ float:'left', marginLeft:'90px', width:'300px'}}   size="small">
+                <FormControl  style={{ float:'left', width:'230px'}}   size="small">
                     <InputLabel id="demo-simple-select-label">Course Code</InputLabel>
                     <Select
                     labelId="demo-simple-select-label"
@@ -89,12 +87,12 @@ const dispatch = useDispatch();
                 </FormControl>
                 </Grid>
                 <Grid item xs={6} md={4} sm={6}>
-                        < TextField id="outlined-basic" style={{ width: '300px', align: 'left' }} label="Academic Year" variant="outlined" size="small"
+                        < TextField id="outlined-basic" style={{ width: '230px', align: 'left' }} label="Academic Year" variant="outlined" size="small"
                         onChange={(e) => setDropData({ ...dropData, accademic_year: e.target.value })}
                         />
                     </Grid>
                      <Grid item xs={6} md={4} sm={6}>
-                <FormControl  style={{ float:'left', marginLeft:'90px', width:'300px'}}   size="small">
+                <FormControl  style={{ float:'left', width:'230px'}}   size="small">
                     <InputLabel id="demo-simple-select-label">Semester</InputLabel>
                   <Select
                     value={dropData.semester}
@@ -109,7 +107,7 @@ const dispatch = useDispatch();
                 </FormControl>
                 </Grid>
                 <Grid item xs={6} md={4} sm={6}>
-                        < TextField id="outlined-basic" style={{ width: '300px', align: 'left' }} label="Advisor" variant="outlined" size="small"
+                        < TextField id="outlined-basic" style={{ width: '230px', align: 'left' }} label="Advisor" variant="outlined" size="small"
                         onChange={(e) => setDropData({ ...dropData, advisor: e.target.value })}
                         />
                 </Grid>

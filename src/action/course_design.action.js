@@ -42,3 +42,14 @@ export const deleteCourse_Design = (id) => async (dispatch) => {
     console.log(error.message);
   }
 };
+
+export const getOneCourseDesign = (course_design_id) => async (dispatch) => {
+  try {
+    const { data } = await api.fetchOne(course_design_id);
+    // console.log(data);
+    dispatch({ type: FETCH_ALL, payload: data });
+    console.log(data);
+  } catch (error) {
+    console.log(error.message);
+  }
+};

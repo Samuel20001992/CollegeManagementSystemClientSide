@@ -79,9 +79,7 @@ function Add_Course() {
   }
 
     return (
-        <div style={{
-            backgroundColor: 'white', height: '100vh', border: '1px solid blue' }}>
-            <Header />
+        <div >
         <form autoComplete="off" noValidate onSubmit={handleSubmit}>
           <CardContent
             component="form"
@@ -89,7 +87,7 @@ function Add_Course() {
             autoComplete="off"
             // className='d-flex'  
                 style={{
-                marginTop:'50px',
+                marginTop:'20px',
                 // marginLeft: '20px',
                 // marginRight: '20px',
                 marginBottom: '50px',
@@ -99,18 +97,19 @@ function Add_Course() {
         >
             <Grid container spacing={3}>
                 <Grid item xs={6} md={4} sm={6}>
-                        < TextField id="outlined-basic" style={{ width: '300px', align: 'left' }} label="Course Code" variant="outlined" size="small"
+                        < TextField id="outlined-basic" style={{ width: '230px', align: 'left' }} label="Course Code" variant="outlined" size="small"
                             name='course_code'
                             onChange={(e) => setCourseData({ ...courseData, course_code: e.target.value })}
                         />
                     </Grid>
-                    <Grid item xs={6} md={4} sm={6}>
-                <FormControl  style={{ float:'left', marginLeft:'90px', width:'300px'}}   size="small">
+                    {/* <Grid item xs={6} md={4} sm={6}>
+                <FormControl  style={{ float:'left', width:'230px'}}   size="small">
                     <InputLabel id="demo-simple-select-label">Curriculum Id</InputLabel>
                     <Select
                     labelId="demo-simple-select-label"
                     id="demo-simple-select"
                     name='curriculum_id'
+                    label='curriculum_id'
                     onChange={(e) => setCourseData({ ...courseData, carriculum_id: e.target.value })}
                         >
                           <MenuItem value={"1"}>1</MenuItem>
@@ -118,46 +117,47 @@ function Add_Course() {
                          <MenuItem value={"3"}>3</MenuItem> 
                     </Select>
                 </FormControl>
-                </Grid>
+                </Grid> */}
                 <Grid item xs={6} md={4} sm={6}>
-                        < TextField id="outlined-basic" style={{ width: '300px', align: 'left' }} label="Course Title" variant="outlined" size="small"
+                        < TextField id="outlined-basic" style={{ width: '230px', align: 'left' }} label="Course Title" variant="outlined" size="small"
                             name='course_title'
                                 onChange={(e) => setCourseData({ ...courseData, course_title: e.target.value })}
                         />
                 </Grid>
                 <Grid item xs={6} md={4} sm={6}>
-                        < TextField id="outlined-basic" style={{ width: '300px', align: 'left' }} label="Credit Hour" variant="outlined" size="small"
+                        < TextField id="outlined-basic" style={{ width: '230px', align: 'left' }} label="Credit Hour" variant="outlined" size="small"
                         name='course_data'
                                 onChange={(e) => setCourseData({ ...courseData, credit_hour: e.target.value })}
                         />
                 </Grid>
                 
                 <Grid item xs={6} md={4} sm={6}>
-                        < TextField id="outlined-basic" style={{ width: '300px', align: 'left' }} label="Lecture Hour" variant="outlined" size="small"
+                        < TextField id="outlined-basic" style={{ width: '230px', align: 'left' }} label="Lecture Hour" variant="outlined" size="small"
                                 name='lecture_hour'
                                 onChange={(e) => setCourseData({ ...courseData, lecture_hour: e.target.value })}
                         />
                 </Grid>
                 <Grid item xs={6} md={4} sm={6}>
-                        < TextField id="outlined-basic" style={{ width: '300px', align: 'left' }} label="Practical Hour" variant="outlined" size="small"
+                        < TextField id="outlined-basic" style={{ width: '230px', align: 'left' }} label="Practical Hour" variant="outlined" size="small"
                         name='practical_hour'
                                 onChange={(e) => setCourseData({ ...courseData, practical_hour: e.target.value })}
                         />
                 </Grid>
                 <Grid item xs={6} md={4} sm={6}>
-                        < TextField id="outlined-basic" style={{ width: '300px', align: 'left' }} label="Tutorial Hour" variant="outlined" size="small"
+                        < TextField id="outlined-basic" style={{ width: '230px', align: 'left' }} label="Tutorial Hour" variant="outlined" size="small"
                         name='tutorial_hour'
                                 onChange={(e) => setCourseData({ ...courseData, tutorial_hour: e.target.value })}
                         />
                 </Grid>
                 <Grid item xs={6} md={4} sm={6}>
-                        <FormControl  style={{ float:'left', marginLeft:'90px', width:'300px'}}   size="small">
+                        <FormControl  style={{ float:'left',  width:'230px'}}   size="small">
                     <InputLabel id="demo-simple-select-label">Prerequistie</InputLabel>
                     <Select
                     labelId="demo-simple-select-label"
                     id="demo-simple-select"
                     value={courseData.prerequisite}
                     name='prerequiste'
+                    label='prerequiste'
                     onChange={handlePrerequisite}
                                 >
                                     {
@@ -171,12 +171,14 @@ function Add_Course() {
                 </FormControl>
                     </Grid>
                     <Grid item xs={6} md={4} sm={6}>
-                <FormControl  style={{ float:'left', marginLeft:'90px', width:'300px'}}   size="small">
+                <FormControl  style={{ float:'left',  width:'230px'}}   size="small">
                     <InputLabel id="demo-simple-select-label">Course Category</InputLabel>
                     <Select
                     labelId="demo-simple-select-label"
                     id="demo-simple-select"
                     name='course_category'
+                    label='course_category'
+                    value={courseData.course_category}
                    onChange={(e) => setCourseData({ ...courseData, course_category: e.target.value })}
                         >
                             <MenuItem value={'Core'}>Core</MenuItem>
@@ -187,12 +189,14 @@ function Add_Course() {
                 </FormControl>
                 </Grid>
                 <Grid item xs={6} md={4} sm={6}>
-                <FormControl  style={{ float:'left', marginLeft:'90px', width:'300px'}}   size="small">
+                <FormControl  style={{ float:'left',  width:'230px'}}   size="small">
                     <InputLabel id="demo-simple-select-label">Course Category Option</InputLabel>
                     <Select
                     labelId="demo-simple-select-label"
                     id="demo-simple-select"
                     name='course_category_option'
+                    label='course_category_option'
+                    value={courseData.course_category_option}
                     onChange={(e) => setCourseData({ ...courseData, course_category_option: e.target.value })}
                         >
                             <MenuItem value={'Major Course'}>Major Course</MenuItem>
@@ -204,18 +208,19 @@ function Add_Course() {
                 </FormControl>
                 </Grid>
                 <Grid item xs={6} md={4} sm={6}>
-                <FormControl  style={{ float:'left', marginLeft:'90px', width:'300px'}}   size="small">
+                <FormControl  style={{ float:'left', width:'230px'}}   size="small">
                     <InputLabel id="demo-simple-select-label">Course Owner</InputLabel>
                     <Select
                     labelId="demo-simple-select-label"
                                     id="demo-simple-select"
                                     value={courseData.course_owner}
                     name='course_owner'
+                    label='course_owner'
                     onChange={handleCourseOwner}
                                 >
                                     {
                                         departments.map((department) => {
-                                            return <MenuItem value={department.phone}>{department.phone}</MenuItem>
+                                            return <MenuItem value={department.department_name}>{department.department_name}</MenuItem>
                                         })
                                     }
                           

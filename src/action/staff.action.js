@@ -42,3 +42,14 @@ export const deleteStaff = (id) => async (dispatch) => {
     console.log(error.message);
   }
 };
+
+export const getOneStaff = (staff_id) => async (dispatch) => {
+  try {
+    const { data } = await api.fetchOne(staff_id);
+    // console.log(data);
+    dispatch({ type: FETCH_ALL, payload: data });
+    console.log(data);
+  } catch (error) {
+    console.log(error.message);
+  }
+};

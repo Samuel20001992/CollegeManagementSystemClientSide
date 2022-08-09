@@ -54,9 +54,7 @@ function Add_Course_Breakdown() {
         setCourseBreakdownData({ ...courseBreakdownData, course_code: e.target.value })
     }
     return (
-        <div style={{
-            backgroundColor: 'white', height: '100vh', border: '1px solid blue' }}>
-            <Header />
+        <div>
             <form autoComplete="off" noValidate onSubmit={handleSubmit}>
           <CardContent
             component="form"
@@ -83,7 +81,7 @@ function Add_Course_Breakdown() {
                     value={section}
                             label="Department Head"
                                 name='section'
-                                onChange={handleCourseCode}
+                                onChange={(e) => setCourseBreakdownData({ ...courseBreakdownData, section: e.target.value })}
                         >
                          <MenuItem value={"1"}>1</MenuItem>
                          <MenuItem value={"2"}>2</MenuItem>

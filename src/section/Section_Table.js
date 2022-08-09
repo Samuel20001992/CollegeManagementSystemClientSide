@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React,{useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
 import { alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
@@ -15,15 +15,19 @@ import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
 import Checkbox from '@mui/material/Checkbox';
 import IconButton from '@mui/material/IconButton';
+import {Modal, TextField} from '@mui/material';
 import Tooltip from '@mui/material/Tooltip';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { Button } from '@mui/material';
+import { Button, Grid } from '@mui/material';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 //import FilterListIcon from '@mui/icons-material/FilterListIcon';
 import { visuallyHidden } from '@mui/utils';
 import {Link} from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import {getStudent_Details, updateStudent_Detail} from '../action/student_detail.action';
+import {createStudent_Section} from '../action/student_section.action';
 
 function createData(first_name, middle_name, last_name, gender, phone,email) {
   return {
@@ -36,17 +40,17 @@ function createData(first_name, middle_name, last_name, gender, phone,email) {
   };
 }
 
-const rows = [
-    createData('Samuel', 'Hailemariam', 'Seifu', 'Male', '0903649609', 'samuelhailemariam4@gmail.com'),
-    createData('Sennay', 'wo', 'fe', 'Male', '0903449609','sennay4@gmail.com'),
-    createData('Samuel', 'Hailemariam', 'Seifu', 'Male', '0903649609','samuelhailemariam4@gmail.com'),
-    createData('Samuel', 'Hailemariam', 'Seifu', 'Male', '0903649609','samuelhailemariam4@gmail.com'),
-    createData('Samuel', 'Hailemariam', 'Seifu', 'Male', '0903649609','samuelhailemariam4@gmail.com'),
-    createData('Samuel', 'Hailemariam', 'Seifu', 'Male', '0903649609','samuelhailemariam4@gmail.com'),
-    createData('Samuel', 'Hailemariam', 'Seifu', 'Male', '0903649609','samuelhailemariam4@gmail.com'),
-    createData('Samuel', 'Hailemariam', 'Seifu', 'Male', '0903649609','samuelhailemariam4@gmail.com'),
-    createData('Samuel', 'Hailemariam', 'Seifu', 'Male', '0903649609','samuelhailemariam4@gmail.com'),
-];
+const style = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 800,
+  bgcolor: 'background.paper',
+  border: '2px solid #000',
+  boxShadow: 24,
+  p: 4,
+};
 
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
@@ -57,6 +61,8 @@ function descendingComparator(a, b, orderBy) {
   }
   return 0;
 }
+
+
 
 function getComparator(order, orderBy) {
   return order === 'desc'
@@ -79,6 +85,12 @@ function stableSort(array, comparator) {
 }
 
 const headCells = [
+  {
+    id: 'student_id',
+    numeric: false,
+    disablePadding: false,
+    label: 'Student Id',
+  },
   {
     id: 'first_name',
     numeric: false,
@@ -105,18 +117,24 @@ const headCells = [
   },
  
   {
-    id: 'date_of_birth',
+    id: 'department',
     numeric: true,
     disablePadding: false,
-    label: 'Date of Birth',
+    label: 'Department',
   },
   {
-    id: 'email',
+    id: 'program',
     numeric: true,
     disablePadding: false,
-    label: 'Email',
+    label: 'Program',
    },
-  {
+   {
+    id: 'learning_modality',
+    numeric: true,
+    disablePadding: false,
+    label: 'Learning Modality ',
+   },
+   {
     id: 'opertations',
     numeric: true,
     disablePadding: false,
@@ -134,7 +152,7 @@ function EnhancedTableHead(props) {
   return (
     <TableHead>
       <TableRow>
-        <TableCell padding="checkbox">
+        {/* <TableCell padding="checkbox">
           <Checkbox
             color="primary"
             indeterminate={numSelected > 0 && numSelected < rowCount}
@@ -144,7 +162,7 @@ function EnhancedTableHead(props) {
               'aria-label': 'select all desserts',
             }}
           />
-        </TableCell>
+        </TableCell> */}
         {headCells.map((headCell) => (
           <TableCell
             key={headCell.id}
@@ -238,13 +256,13 @@ const EnhancedTableToolbar = (props) => {
 EnhancedTableToolbar.propTypes = {
   numSelected: PropTypes.number.isRequired,
 };
-
-export default function Section_Table() {
+let rows;
+export default function Section_Table(props) {
   const [order, setOrder] = React.useState('asc');
   const [orderBy, setOrderBy] = React.useState('First Name');
   const [selected, setSelected] = React.useState([]);
   const [page, setPage] = React.useState(0);
-  const [dense, setDense] = React.useState(false);
+  const [dense, setDense] = React.useState(true);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
   const handleRequestSort = (event, property) => {
@@ -298,13 +316,65 @@ export default function Section_Table() {
   const isSelected = (email) => selected.indexOf(email) !== -1;
 
   // Avoid a layout jump when reaching the last page with empty rows.
+  rows = props.rows;
   const emptyRows =
     page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
 
+    const [record, setRecord] = useState();
+    const [open, SetOpen] = useState(false);
+    const handleOpen = (row) =>{
+       SetOpen(true)
+      };
+    const handleClose = () => SetOpen(false);
+    const [currentId, setCurrentId] = useState();
+    
+   
+   const dispatch = useDispatch();
+    const [section, setSection] = useState('');
+
+
+    const handleSubmit = () =>{
+       console.log('rows ' + record)
+       rows.map((row)=>{
+        if(record == row.student_id){
+          row.section = studentSection.section_name;
+          dispatch(updateStudent_Detail(row._id,row));
+          studentSection.first_name = row.first_name;
+          studentSection.middle_name = row.middle_name;
+          studentSection.last_name = row.last_name;
+          studentSection.student_id = row.student_id;
+          studentSection.department = row.department;
+          studentSection.learning_modality = row.learning_modality;
+          studentSection.program = row.program;
+        }
+       })
+         
+       
+       dispatch(createStudent_Section(studentSection));
+            
+            
+          window.location.reload();
+      } 
+
+
+      const [studentSection, setStudentSection] = useState({
+        first_name:'',
+        middle_name:'',
+        last_name:'',
+        student_id:'',
+        section_name:'',
+        department:'',
+        learning_modality:'',
+        program:'',
+        attendance_year:'',
+        semester:'',
+        academic_year:''
+      })
+
   return (
-    <Box sx={{ width: '90%' }}>
-      <Paper sx={{ width: '90%', mb: 2,ml:2,mr:2,mt:2}}>
-        <EnhancedTableToolbar numSelected={selected.length} />
+    <Box sx={{ width: '100%' }}>
+      <Paper sx={{ width: '100%', mb: 2,ml:2,mr:2,mt:2}}>
+        {/* <EnhancedTableToolbar numSelected={selected.length} /> */}
         <TableContainer>
           <Table
             sx={{ minWidth: 750 }}
@@ -325,6 +395,7 @@ export default function Section_Table() {
               {stableSort(rows, getComparator(order, orderBy))
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((row, index) => {
+                if(row.section == ''){
                   const isItemSelected = isSelected(row.email);
                   const labelId = `enhanced-table-checkbox-${index}`;
 
@@ -338,28 +409,72 @@ export default function Section_Table() {
                       key={row.name}
                       selected={isItemSelected}
                     >
-                      <TableCell padding="checkbox">
-                        <Checkbox
-                          color="primary"
-                          checked={isItemSelected}
-                          inputProps={{
-                            'aria-labelledby': labelId,
-                          }}
-                        />
-                      </TableCell>
+                      <TableCell align="left">{row.student_id}</TableCell>
                       <TableCell align="left">{row.first_name}</TableCell>
                       <TableCell align="left">{row.middle_name}</TableCell>
                       <TableCell align="left">{row.last_name}</TableCell>
                       <TableCell align="left">{row.gender}</TableCell>
-                      <TableCell align="left">{row.phone}</TableCell> 
-                      <TableCell align="left">{row.email}</TableCell>
+                      <TableCell align="left">{row.department}</TableCell> 
+                      <TableCell align="left">{row.program}</TableCell>
+                      <TableCell align="left">{row.learning_modality}</TableCell>
                       <TableCell align="left">
-                        <VisibilityIcon />
-                        <Button variant='contained' color='secondary' style={{marginLeft:'15px'}}>Add to Section</Button>
+              
+                        <Button variant='contained' color='secondary' style={{ marginLeft: '15px' }}
+                          onClick={(e) =>{handleOpen()
+                          setRecord(row.student_id)
+                          }}
+                        >Add to Section</Button>
+                        <Modal
+                        open={open}
+                        onClose={handleClose}
+                        aria-labelledby="modal-modal-title"
+                        aria-describedby="modal-modal-description"
+                        >
+                        <Box sx={style} style={{width:'15%', height:'50%'}}>
+                        
+                        <Grid container spacing={3}>
+                          <Grid item xs = {12}>
+                          < TextField id="outlined-basic" style={{ width: '230px', align: 'left' }}  label="Section Name" variant="outlined" size="small"
+                             value={studentSection.section_name}   name='section_name' onChange={(e) => setStudentSection({...studentSection, section_name: e.target.value })} 
+                             
+                            />
+                          </Grid>
+                          <Grid item xs = {12}>
+                          < TextField id="outlined-basic" style={{ width: '230px', align: 'left' }}  label="Attendance Year" variant="outlined" size="small"
+                               onChange={(e) => setStudentSection({...studentSection, attendance_year: e.target.value })} 
+                            value={studentSection.attendance_year}
+                            />
+                          </Grid>
+                          <Grid item xs = {12}>
+                          < TextField id="outlined-basic" style={{ width: '230px', align: 'left' }}  label="Semester" variant="outlined" size="small"
+                                onChange={(e) => setStudentSection({...studentSection, semester: e.target.value })} 
+                             value={studentSection.semester}
+                            />
+                          </Grid>
+                          <Grid item xs = {12}>
+                          < TextField id="outlined-basic" style={{ width: '230px', align: 'left' }}  label="Academic Year" variant="outlined" size="small"
+                                onChange={(e) => setStudentSection({...studentSection, academic_year: e.target.value })} 
+                             value={studentSection.academic_year}
+                            />
+                          </Grid>
+                          <Grid item xs={12}>
+                            <center>
+                          <Button variant='contained' color='primary'
+                            onClick={(e) => {handleSubmit(row)}}
+                            >Submit</Button></center>
+                          </Grid>
+                        </Grid>
+                        
+                        </Box>
+                        </Modal>
                       </TableCell>
                     </TableRow>
                   );
-                })}
+                }
+                }
+                )
+                
+                }
               {emptyRows > 0 && (
                 <TableRow
                   style={{
@@ -387,12 +502,7 @@ export default function Section_Table() {
         control={<Switch checked={dense} onChange={handleChangeDense} />}
         label="Dense padding"
       />
-      <center>
-        <Link to='/Add_Section'>
-          <Button variant='contained' color='primary' style={{ marginBottom:'80px'}}>Create Section</Button>
-        </Link>
-        <Button variant='contained' color='primary' style={{ marginBottom:'80px', marginLeft:'50px'}}>Cancel</Button>
-      </center>
+      
     </Box>
   );
 }

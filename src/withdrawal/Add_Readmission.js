@@ -5,6 +5,7 @@ import { Button } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { createReadmission } from '../action/readmission.action';
 import { deleteWithdrawal, getWithdrawals } from '../action/withdrawal.action';
+import { createStudent } from '../action/student.action';
 function Add_Readmission(props) {
 
     const [readmissionData, setReadmissionData] = useState({
@@ -16,7 +17,8 @@ function Add_Readmission(props) {
       e.preventDefault();
       readmissionData.student_id = props.student_id;
       dispatch(createReadmission(readmissionData)); 
-     dispatch(deleteWithdrawal(props.value))
+      dispatch(createStudent(props.value));
+     dispatch(deleteWithdrawal(props.value._id))
   }
 
 

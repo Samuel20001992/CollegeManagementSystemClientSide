@@ -15,6 +15,8 @@ import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
 import Checkbox from '@mui/material/Checkbox';
 import IconButton from '@mui/material/IconButton';
+import EditIcon from '@mui/icons-material/Edit';
+import {Modal} from '@mui/material';
 import Tooltip from '@mui/material/Tooltip';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
@@ -25,9 +27,22 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import { visuallyHidden } from '@mui/utils';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { getStudents } from '../action/student.action';
+import { deleteStudent, getStudents } from '../action/student.action';
+import View_Student from './View_Student';
+import Update_Student from './Update_Student';
 
 
+const style = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 800,
+  bgcolor: 'background.paper',
+  border: '2px solid #000',
+  boxShadow: 24,
+  p: 4,
+};
 
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
@@ -63,18 +78,18 @@ const headCells = [
   {
     id: 'student_id',
     numeric: false,
-    disablePadding: true,
+    disablePadding: false,
     label: 'Student Id',
   },
   {
     id: 'first_name',
     numeric: false,
-    disablePadding: true,
+    disablePadding: false,
     label: 'First Name',
   },
   {
     id: 'middle_name',
-    numeric: true,
+    numeric: false,
     disablePadding: false,
     label: 'Middle Name',
   },
@@ -92,17 +107,29 @@ const headCells = [
   },
  
   {
-    id: 'phone',
+    id: 'department',
     numeric: true,
     disablePadding: false,
-    label: 'Phone',
+    label: 'Department',
   },
   {
-    id: 'email',
+    id: 'program',
     numeric: true,
     disablePadding: false,
-    label: 'Email',
+    label: 'Program',
    },
+   {
+    id: 'learning_modality',
+    numeric: true,
+    disablePadding: false,
+    label: 'Learning Modality ',
+   },
+   {
+    id: 'opertations',
+    numeric: true,
+    disablePadding: false,
+    label: 'Operations',
+  },
   
 ];
 
@@ -116,7 +143,7 @@ function EnhancedTableHead(props) {
   return (
     <TableHead>
       <TableRow>
-        <TableCell padding="checkbox">
+        {/* <TableCell padding="checkbox">
           <Checkbox
             color="primary"
             indeterminate={numSelected > 0 && numSelected < rowCount}
@@ -126,7 +153,7 @@ function EnhancedTableHead(props) {
               'aria-label': 'select all desserts',
             }}
           />
-        </TableCell>
+        </TableCell> */}
         {headCells.map((headCell) => (
           <TableCell
             key={headCell.id}
@@ -161,67 +188,9 @@ EnhancedTableHead.propTypes = {
   rowCount: PropTypes.number.isRequired,
 };
 
-const EnhancedTableToolbar = (props) => {
-  const { numSelected } = props;
+let rows;
 
-  return (
-    <Toolbar
-      sx={{
-        pl: { sm: 2 },
-        pr: { xs: 1, sm: 1 },
-        ...(numSelected > 0 && {
-          bgcolor: (theme) =>
-            alpha(theme.palette.primary.main, theme.palette.action.activatedOpacity),
-        }),
-      }}
-    >
-      {numSelected > 0 ? (
-        <Typography
-          sx={{ flex: '1 1 100%' }}
-          color="inherit"
-          variant="subtitle1"
-          component="div"
-        >
-          {numSelected} selected
-        </Typography>
-      ) : (
-      <div>
-        <Typography
-          // sx={{ flex: '1 1 100%' }}
-          variant="h6"
-          id="tableTitle"
-          component="div"
-          style={{float:'left'}}
-        >
-          Student Table
-        </Typography>
-      </div>
-        
-      )}
-
-      {numSelected > 0 ? (
-        <Tooltip title="Delete">
-          <IconButton>
-            <DeleteIcon />
-          </IconButton>
-        </Tooltip>
-          ) : (
-                  null
-        //  <Tooltip title="Filter list">
-        //   <IconButton>
-        //     <FilterListIcon />
-        //   </IconButton>
-        // </Tooltip>
-      )}
-    </Toolbar>
-  );
-};
-
-EnhancedTableToolbar.propTypes = {
-  numSelected: PropTypes.number.isRequired,
-};
-
-export default function Student_Table() {
+export default function Student_Table(props) {
   const [order, setOrder] = React.useState('asc');
   const [orderBy, setOrderBy] = React.useState('First Name');
   const [selected, setSelected] = React.useState([]);
@@ -282,23 +251,37 @@ export default function Student_Table() {
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =
     page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
+    const [update, setUpdate] = useState(false);
 
-  const dispatch = useDispatch();
-  const [currentId, setCurrentId] = useState(0);
-  useEffect(() => {
-    dispatch(getStudents());
-  }, [currentId, dispatch]);
+    const dispatch = useDispatch();
 
-  const staffRows =  useSelector((state) => state.studentReducer);
+    const [open1, setOpen1] = useState(false);
+    const handleOpen1 = () => {
+      setOpen1(true)
+      
+    };
+    const handleClose1 = () => {
+      setOpen1(false)
+      window.location.reload();
+    };
 
-  const rows = staffRows;
-  
-  
+    const [open2, setOpen2] = useState(false);
+    const handleOpen2 = () => setOpen2(true);
+    const handleClose2 = () => {
+      setOpen2(false)
+      window.location.reload();
+    };
+
+   rows = props.rows;
+  const [send, setSend] = useState();
+  const [send1, setSend1] = useState();
+  const handleDelete = (id) => {
+    dispatch(deleteStudent(id));
+  }
   
   return (
-    <Box sx={{ width: '90%' }}>
-      <Paper sx={{ width: '90%', mb: 2,ml:2,mr:2,mt:2}}>
-        <EnhancedTableToolbar numSelected={selected.length} />
+    <Box sx={{ width: '100%' }}>
+      <Paper sx={{ width: '100%', mb: 2,ml:2,mr:2,mt:2}}>
         <TableContainer>
           <Table
             sx={{ minWidth: 750 }}
@@ -332,7 +315,7 @@ export default function Student_Table() {
                       key={row.name}
                       selected={isItemSelected}
                     >
-                      <TableCell padding="checkbox">
+                      {/* <TableCell padding="checkbox">
                         <Checkbox
                           color="primary"
                           checked={isItemSelected}
@@ -340,17 +323,53 @@ export default function Student_Table() {
                             'aria-labelledby': labelId,
                           }}
                         />
-                      </TableCell>
+                      </TableCell> */}
                       <TableCell align="left">{row.student_id}</TableCell>
                       <TableCell align="left">{row.first_name}</TableCell>
                       <TableCell align="left">{row.middle_name}</TableCell>
                       <TableCell align="left">{row.last_name}</TableCell>
                       <TableCell align="left">{row.gender}</TableCell>
-                      <TableCell align="left">{row.phone}</TableCell> 
-                      <TableCell align="left">{row.email}</TableCell>
-                      {/* <TableCell align="left">
-                        <VisibilityIcon />
-                      </TableCell> */}
+                      <TableCell align="left">{row.department}</TableCell> 
+                      <TableCell align="left">{row.program}</TableCell>
+                      <TableCell align="left">{row.learning_modality}</TableCell>
+                      <TableCell align="left">
+                        <VisibilityIcon color="primary" onClick={(e)=>{
+                          handleOpen1()
+                          setSend(row.student_id)
+                        }} />
+                        <Modal
+                        open={open1}
+                        onClose={handleClose1}
+                        aria-labelledby="modal-modal-title"
+                        aria-describedby="modal-modal-description"
+                        >
+                        <Box sx={style} style={{width:'300px', height:'300px'}}>
+                            
+                             <View_Student student_id={send}/>
+                        </Box>
+                        </Modal>
+                        <DeleteIcon color="primary" onClick={() => {
+                          handleDelete(row.student_id)
+                        }} />
+                        <EditIcon color="primary"
+                          onClick={() => {
+                            handleOpen2()
+                            setSend1(row)
+                          }}
+                        />
+                        <Modal
+                        open={open2}
+                        onClose={handleClose2}
+                        aria-labelledby="modal-modal-title"
+                        aria-describedby="modal-modal-description"
+                        >
+                        <Box sx={style} style={{width:'800px', height:'500px'}}>
+                            
+                            <Update_Student data={send1} handleClose2={handleClose2}/>
+                          
+                        </Box>
+                        </Modal>
+                      </TableCell>
                     </TableRow>
                   );
                 })}

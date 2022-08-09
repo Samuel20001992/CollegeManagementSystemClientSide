@@ -48,7 +48,7 @@ export default function Header() {
           label={auth ? 'Logout' : 'Login'}
         />
       </FormGroup> */}
-      <AppBar position="static">
+      <AppBar position="static" style={{backgroundColor: '#2F4050'}}>
         <Toolbar>
           <IconButton
             size="large"
@@ -59,7 +59,7 @@ export default function Header() {
           >
             <MenuIcon />
           </IconButton>
-          <FormControl style={{ width: '150px', fills: 'white', color: 'white', marginLeft:'100px'}}>
+          {/* <FormControl style={{ width: '150px', fills: 'white', color: 'white', marginLeft:'100px'}}>
             <InputLabel id="demo-simple-select-label">Registrar</InputLabel>
             <Select
                 labelId="demo-simple-select-label"
@@ -154,12 +154,12 @@ export default function Header() {
               onChange={handleNav}
               label={nav}
             >
-              {/* <MenuItem value={'View Section'} >
+              <MenuItem value={'View Section'} >
                 <Link to='/View_Section' style={{ textDecoration:'none'}}>
                   View Section
                 </Link>
-              </MenuItem>  */}
-              <MenuItem value={'View Add'} >
+              </MenuItem> 
+               <MenuItem value={'View Add'} >
                 <Link to='/View_Add' style={{ textDecoration:'none'}}>
                   View Add
                 </Link>
@@ -190,7 +190,7 @@ export default function Header() {
                 </Link>
               </MenuItem>
             </Select>
-          </FormControl>
+          </FormControl> 
           <FormControl style={{ width: '150px', fills: 'white', color: 'white', marginLeft:'100px'}}>
             <InputLabel id="demo-simple-select-label">Admin</InputLabel>
             <Select
@@ -256,7 +256,7 @@ export default function Header() {
                 </Link>
               </MenuItem>
             </Select>
-          </FormControl>
+          </FormControl>  */}
           {auth && (
             <div>
               <IconButton

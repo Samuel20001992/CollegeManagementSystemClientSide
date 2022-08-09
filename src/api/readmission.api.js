@@ -6,3 +6,4 @@ export const fetchReadmissions = () => axios.get(url);
 export const createReadmission = (newReadmission) => axios.post(url, newReadmission);
 export const updateReadmission = (id, updatedReadmission) => axios.patch(`${url}/${id}`, updatedReadmission);
 export const deleteReadmission = (id) => axios.delete(`${url}/${id}`);
+export const fetchOne =  (readmission_id) => axios.get(`${url}/${readmission_id}`);

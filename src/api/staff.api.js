@@ -6,3 +6,4 @@ export const fetchStaffs = () => axios.get(url);
 export const createStaff = (newStaff) => axios.post(url, newStaff);
 export const updateStaff = (id, updatedStaff) => axios.patch(`${url}/${id}`, updatedStaff);
 export const deleteStaff = (id) => axios.delete(`${url}/${id}`);
+export const fetchOne =  (staff_id) => axios.get(`${url}/${staff_id}`);

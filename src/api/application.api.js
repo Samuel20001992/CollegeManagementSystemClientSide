@@ -6,3 +6,4 @@ export const fetchApplications = () => axios.get(url);
 export const createApplication= (newApplications) => axios.post(url, newApplications);
 export const updateApplication = (id, updatedApplications) => axios.patch(`${url}/${id}`, updatedApplications);
 export const deleteApplication = (id) => axios.delete(`${url}/${id}`);
+export const fetchOne =  (application_id) => axios.get(`${url}/${application_id}`);

@@ -30,7 +30,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Add_Applicant from './Add_Applicant';
 import { createStudent } from '../action/student.action';
-
+import {createStudent_Detail} from '../action/student_detail.action';
 
 const style = {
     position: 'absolute',
@@ -77,6 +77,12 @@ function stableSort(array, comparator) {
 }
 
 const headCells = [
+  {
+    id: 'id',
+    numeric: false,
+    disablePadding: true,
+    label: '#',
+  },
   {
     id: 'first_name',
     numeric: false,
@@ -138,7 +144,7 @@ function EnhancedTableHead(props) {
   return (
     <TableHead>
       <TableRow>
-        <TableCell padding="checkbox">
+        {/* <TableCell padding="checkbox">
           <Checkbox
             color="primary"
             indeterminate={numSelected > 0 && numSelected < rowCount}
@@ -148,7 +154,7 @@ function EnhancedTableHead(props) {
               'aria-label': 'select all desserts',
             }}
           />
-        </TableCell>
+        </TableCell> */}
         {headCells.map((headCell) => (
           <TableCell
             key={headCell.id}
@@ -183,70 +189,8 @@ EnhancedTableHead.propTypes = {
   rowCount: PropTypes.number.isRequired,
 };
 
-const EnhancedTableToolbar = (props) => {
-  const { numSelected } = props;
 
-  return (
-    <Toolbar
-      sx={{
-        pl: { sm: 2 },
-        pr: { xs: 1, sm: 1 },
-        ...(numSelected > 0 && {
-          bgcolor: (theme) =>
-            alpha(theme.palette.primary.main, theme.palette.action.activatedOpacity),
-        }),
-      }}
-    >
-      {numSelected > 0 ? (
-        <Typography
-          sx={{ flex: '1 1 100%' }}
-          color="inherit"
-          variant="subtitle1"
-          component="div"
-        >
-          {numSelected} selected
-        </Typography>
-      ) : (
-      <div>
-        <Typography
-          // sx={{ flex: '1 1 100%' }}
-          variant="h6"
-          id="tableTitle"
-          component="div"
-          style={{float:'left'}}
-        >
-          Applicant Table
-            </Typography>
-          <Link to='Add_Applicants'>
-              <Button variant='contained' color='primary' style={{marginLeft:'960px', float:'right', right:0}}>Add New</Button>
-          </Link>
-      </div>
-        
-      )}
-
-      {numSelected > 0 ? (
-        <Tooltip title="Delete">
-          <IconButton>
-            <DeleteIcon />
-          </IconButton>
-        </Tooltip>
-          ) : (
-                  null
-        //  <Tooltip title="Filter list">
-        //   <IconButton>
-        //     <FilterListIcon />
-        //   </IconButton>
-        // </Tooltip>
-      )}
-    </Toolbar>
-  );
-};
-
-EnhancedTableToolbar.propTypes = {
-  numSelected: PropTypes.number.isRequired,
-};
-
-export default function Applicant_Table() {
+export default function Applicant_Table(props) {
   const [order, setOrder] = React.useState('asc');
   const [orderBy, setOrderBy] = React.useState('First Name');
   const [selected, setSelected] = React.useState([]);
@@ -310,10 +254,7 @@ export default function Applicant_Table() {
 
   const dispatch = useDispatch();
   const [currentId, setCurrentId] = useState(0);
-  useEffect(() => {
-    dispatch(getApplicants());
-  }, [currentId, dispatch]);
-
+  
 
   const handleDelete = (id) => {
     dispatch(deleteApplicant(id));
@@ -321,16 +262,20 @@ export default function Applicant_Table() {
 
   const handleApproveOne = (row) => {
     dispatch(createStudent(row));
-    // dispatch(deleteApplicant(row._id));
+    dispatch(createStudent_Detail(row));
+    dispatch(deleteApplicant(row._id));
+    
   }
 
   
 
-  const applicantRows =  useSelector((state) => state.applicantReducer);
+  const applicantRows =  props.rows;
 
 const handleApproveAll = () => {
     applicantRows.map((row) => {
       dispatch(createStudent(row));
+      dispatch(createStudent_Detail(row));
+      dispatch(deleteApplicant(row._id));
     })
   }
 
@@ -341,10 +286,9 @@ const handleApproveAll = () => {
   const [update, setUpdate] = useState(false);
 
   return (
-    <Box sx={{ width: '90%' }}>
+    <Box sx={{ width: '100%' }}>
       
-      <Paper sx={{ width: '90%', mb: 2,ml:2,mr:2,mt:2}}>
-        <EnhancedTableToolbar numSelected={selected.length} />
+      <Paper sx={{ width: '100%', mb: 2,mt:2}}>
         <TableContainer>
           <Table
             sx={{ minWidth: 750 }}
@@ -378,7 +322,7 @@ const handleApproveAll = () => {
                       key={row.name}
                       selected={isItemSelected}
                     >
-                      <TableCell padding="checkbox">
+                      {/* <TableCell padding="checkbox">
                         <Checkbox
                           color="primary"
                           checked={isItemSelected}
@@ -386,7 +330,8 @@ const handleApproveAll = () => {
                             'aria-labelledby': labelId,
                           }}
                         />
-                      </TableCell>
+                      </TableCell> */}
+                       <TableCell align="left">{row.applicant_id}</TableCell>
                       <TableCell align="left">{row.first_name}</TableCell>
                       <TableCell align="left">{row.middle_name}</TableCell>
                       <TableCell align="left">{row.last_name}</TableCell>

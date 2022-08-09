@@ -35,79 +35,69 @@ function Add_Instructor_Course() {
     
     
     return (
-        <div style={{
-            backgroundColor: 'white', height: '100vh', border: '1px solid blue' }}>
-            <Header />
+        <div >
             <form autoComplete="off" noValidate onSubmit={handleSubmit}>
-          <CardContent
-            component="form"
-            noValidate
-            autoComplete="off"
-            // className='d-flex'  
-                style={{
-                marginTop:'50px',
-                // marginLeft: '20px',
-                // marginRight: '20px',
-                marginBottom: '50px',
-                    backgroundColor: 'white',
-                //  borderRadius:'2em'
-            }}
-        >
-            <Grid container spacing={3}>
+            <CardContent style={{backgroundColor:'white', margin:'14px'}}>
+            <Grid container spacing={1} style={{padding:'6px'}}>
                 <Grid item xs={6} md={4} sm={6}>
-                        < TextField id="outlined-basic" style={{ width: '300px', align: 'left' }} label="Instructor Id" variant="outlined" size="small"
+                        < TextField id="outlined-basic" style={{ width: '230px', align: 'left' }} label="Instructor Id" variant="outlined" size="small"
                         name='instructor_id'  onChange={(e) => setCourseDesignData({ ...instructorCourseData, instructor_id: e.target.value })}
                         />
                 </Grid>
                 <Grid item xs={6} md={4} sm={6}>
-                        < TextField id="outlined-basic" style={{ width: '300px', align: 'left' }} label="Program" variant="outlined" size="small"
+                        < TextField id="outlined-basic" style={{ width: '230px', align: 'left' }} label="Program" variant="outlined" size="small"
                         name='program'  onChange={(e) => setCourseDesignData({ ...instructorCourseData,program: e.target.value })}
                         />
                 </Grid>
                 <Grid item xs={6} md={4} sm={6}>
-                        < TextField id="outlined-basic" style={{ width: '300px', align: 'left' }} label="Faculty" variant="outlined" size="small"
+                        < TextField id="outlined-basic" style={{ width: '230px', align: 'left' }} label="Faculty" variant="outlined" size="small"
                         name='faculty'  onChange={(e) => setCourseDesignData({ ...instructorCourseData,faculty: e.target.value })}
                         />
                 </Grid>
                 <Grid item xs={6} md={4} sm={6}>
-                        < TextField id="outlined-basic" style={{ width: '300px', align: 'left' }} label="Department" variant="outlined" size="small"
+                        < TextField id="outlined-basic" style={{ width: '230px', align: 'left' }} label="Department" variant="outlined" size="small"
                         name='department'  onChange={(e) => setCourseDesignData({ ...instructorCourseData,department: e.target.value })}
                         />
                 </Grid>
                 <Grid item xs={6} md={4} sm={6}>
-                        < TextField id="outlined-basic" style={{ width: '300px', align: 'left' }} label="Admission Classification" variant="outlined" size="small"
+                        < TextField id="outlined-basic" style={{ width: '230px', align: 'left' }} label="Admission Classification" variant="outlined" size="small"
                         name='admission_classification'  onChange={(e) => setCourseDesignData({ ...instructorCourseData,admission_classification: e.target.value })}
                         />
                 </Grid>
                 <Grid item xs={6} md={4} sm={6}>
-                        < TextField id="outlined-basic" style={{ width: '300px', align: 'left' }} label="Academic Year" variant="outlined" size="small"
+                        < TextField id="outlined-basic" style={{ width: '230px', align: 'left' }} label="Academic Year" variant="outlined" size="small"
                         name='academic_year'  onChange={(e) => setCourseDesignData({ ...instructorCourseData,academic_year: e.target.value })}
                         />
                 </Grid>
+
+          </Grid>
+          </CardContent>
+          <CardContent style={{backgroundColor:'white', margin:'14px'}}>
+            <Grid container spacing={1} style={{padding:'6px'}}>
                 <Grid item xs={6} md={4} sm={6}>
-                        < TextField id="outlined-basic" style={{ width: '300px', align: 'left' }} label="Semester" variant="outlined" size="small"
+                        < TextField id="outlined-basic" style={{ width: '230px', align: 'left' }} label="Semester" variant="outlined" size="small"
                         name='semester'  onChange={(e) => setCourseDesignData({ ...instructorCourseData,semester: e.target.value })}
                         />
                 </Grid>
                 <Grid item xs={6} md={4} sm={6}>
-                        < TextField id="outlined-basic" style={{ width: '300px', align: 'left' }} label="Section" variant="outlined" size="small"
+                        < TextField id="outlined-basic" style={{ width: '230px', align: 'left' }} label="Section" variant="outlined" size="small"
                         name='section'  onChange={(e) => setCourseDesignData({ ...instructorCourseData,section: e.target.value })}
                         />
                 </Grid>
                 <Grid item xs={6} md={4} sm={6}>
-                        < TextField id="outlined-basic" style={{ width: '300px', align: 'left' }} label="Course Title" variant="outlined" size="small"
+                        < TextField id="outlined-basic" style={{ width: '230px', align: 'left' }} label="Course Title" variant="outlined" size="small"
                         name='course title'  onChange={(e) => setCourseDesignData({ ...instructorCourseData,course_title: e.target.value })}
                         />
                 </Grid>
                 <Grid item xs={6} md={4} sm={6}>
-                        < TextField id="outlined-basic" style={{ width: '300px', align: 'left' }} label="Course Code" variant="outlined" size="small"
+                        < TextField id="outlined-basic" style={{ width: '230px', align: 'left' }} label="Course Code" variant="outlined" size="small"
                         name='course_code'  onChange={(e) => setCourseDesignData({ ...instructorCourseData,course_code: e.target.value })}
                         />
                 </Grid>       
             </Grid>
             </CardContent>
-            
-            <Grid container spacing={3} style={{marginTop:'20px', backgroundColor:'white', padding:'20px'}}>
+            <CardContent style={{backgroundColor:'white', margin:'14px'}}>
+            <Grid container spacing={1} style={{padding:'6px'}}>
               <Grid item xs={6}>
                 <Button variant='contained' color='primary' style={{width:'200px'}} type='submit'>Submit</Button>      
               </Grid>
@@ -115,7 +105,7 @@ function Add_Instructor_Course() {
                 <Button variant='contained' color='secondary' style={{width:'200px'}} >Reset</Button>      
               </Grid>
             </Grid>
-            
+            </CardContent>
           </form>
         </div>
      

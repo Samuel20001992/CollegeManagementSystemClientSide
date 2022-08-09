@@ -76,7 +76,7 @@ const headCells = [
   {
     id: 'serial_number',
     numeric: false,
-    disablePadding: true,
+    disablePadding: false,
     label: 'S.No',
   },
   {
@@ -325,9 +325,9 @@ const rows = [
    
 ];
   return (
-    <Box sx={{ width: '90%' }}>
-      <Paper sx={{ width: '90%', mb: 2,ml:2,mr:2,mt:2}}>
-        <EnhancedTableToolbar numSelected={selected.length} />
+    <Box sx={{ width: '100%' }}>
+      <Paper sx={{ width: '100%', mb: 2,ml:2,mr:2,mt:2}}>
+        {/* <EnhancedTableToolbar numSelected={selected.length} /> */}
         <TableContainer>
           <Table
             sx={{ minWidth: 750 }}

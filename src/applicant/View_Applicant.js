@@ -19,7 +19,7 @@ function View_Applicant() {
     <div >
           <Header/>
           <Grid container spacing={2} style={{ marginTop: '50px' }}>
-                {/* <Grid item xs={8} md={8} sm={8}>
+                <Grid item xs={8} md={8} sm={8}>
                     < TextField id="outlined-basic"  style={{width:'600px', align:'left'}} label="Id" variant="outlined"  size="small" />
               </Grid>
               <Grid item xs={2} md={2} sm={2}>
@@ -46,7 +46,7 @@ function View_Applicant() {
               </Grid>
             </Grid> : null
 
-        }   */}
+        }  
           <Grid item xs={12} md={12} sm={12}>
               <center>
                 <Applicant_Table />

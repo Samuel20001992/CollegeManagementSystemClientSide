@@ -1,5 +1,3 @@
-import logo from './logo.svg';
-import './App.css';
 import { Routes, Route } from 'react-router-dom';
 import View_Student from './student/View_Student';
 import View_Applicant from './applicant/View_Applicant';
@@ -51,29 +49,65 @@ import View_Application from './application_for_incomplete/View_Application';
 import View_Clearance from './clearance/View_Clearance';
 import Academic_Calander from './academic_calander/Academic_Calander';
 import Design_Assessment from './assessment/Design_Assessment';
+import UI from './others/UI';
+import Applicant_Container from './others/Applicant_Container';
+import Section_Container from './others/Section_Container';
+import Sidebar from './dashboard/component/Sidebar';
+import './dashboard/component/sidebar.css';
+import Student_Course_Registration_Container from './others/Student_Course_Registration_Container';
+import Withdrawal_and_Readmission_Container from './others/Withdrawal_and_Readmission_Container';
+import Course_Design_Countainer from './others/Course_Design_Container';
+import Instructor_Course_Container from './others/Instructor_Course_Container';
+import Add_Container from './others/Add_Container';
+import Drop_Container from './others/Drop_Container';
+import Course_Container from './others/Course_Container';
+import Course_Breakdown_Container from './others/Course_Breakdown_Container';
+import Course_Offering_Container from './others/Course_Offering_Container';
+import Staff_Container from './others/Staff_Container';
+import Curriculum_Container from './others/Curriculum_Container';
+import Department_Container from './others/Department_Container';
+import Enrollement_Container from './others/Enrollement_Container';
+import Academic_Calander_Container from './others/Academic_Calander_Container';
+import Clearance from './clearance/Clearance';
+import Clearance_Container from './others/Clearance_Container';
+import Assessment_Container from './others/Assessment_Container';
+import Student_Container from './others/Student_Container';
+import Graduate_Container from './others/Graduate_Container';
+import Add_Section_Container from './others/Add_Section_Container';
+import Semester_Grade_Container from './others/Semester_Grade_Container';
+import Attendance_Container from './others/Attendance_Container';
 
 function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={<View_Applicant/>} />
-        <Route path="/View_Student" element={<View_Student />} />
-        <Route path="/View_Withdrawal" element={<View_Withdrawal />} />
-        <Route path="/View_Readmission" element={<View_Readmission />} />
-        <Route path="/Add_Applicants" element={<Add_Applicant />} />
-        {/* <Route path="/View_Applicants" element={<View_Applicant />} /> */}
-        <Route path="/View_Section" element={<View_Section />} />
-        <Route path="/Add_Section" element={<Add_Section />} />
-        <Route path="/Add_Staff" element={<Add_Staff/>} />
-        <Route path="/Add_Add" element={<Add_Add />} />
-        <Route path="/View_Staff" element={<View_Staff />} />
-        <Route path="/View_Add" element={<View_Add/>} />
-        <Route path="/Add_Drop" element={<Add_Drop />} />
-        <Route path="/View_Drop" element={<View_Drop />} />
-        <Route path="/Add_Course_Breakdown" element={<Add_Course_Breakdown />} />
-        <Route path="/View_Course_Breakdown" element={<View_CourseBreakdown />} />
-        <Route path="/Add_Course_Offering" element={<Add_Course_Offering />} />
-        <Route path="/View_Course_Offering" element={<View_Course_Offering />} />
+        <Route path="/" element={<Sidebar/>} />
+        <Route path="/Applicant" element={<Applicant_Container/>} />
+        <Route path="/Student_Course_Registration" element={<Student_Course_Registration_Container/>} />
+        <Route path="/Withdrawal_and_Readmission" element={<Withdrawal_and_Readmission_Container/>} />
+        <Route path="/Course_Design" element={<Course_Design_Countainer/>} />
+        <Route path="/Instructor_Course" element={<Instructor_Course_Container/>} />
+        <Route path="/Add" element={<Add_Container/>} />
+        <Route path="/Drop" element={<Drop_Container/>} />
+        <Route path="/Course" element={<Course_Container/>} />
+        <Route path="/Course_Breakdown" element={<Course_Breakdown_Container/>} />
+        <Route path="/Course_Offering" element={<Course_Offering_Container/>} />
+        <Route path="/Staff" element={<Staff_Container/>} />
+        <Route path="/Academic_Calander" element={<Academic_Calander_Container/>} />
+        <Route path="/Curriculum" element={<Curriculum_Container/>} />
+        <Route path="/Department" element={<Department_Container/>} />
+        <Route path="/Enrollement" element={<Enrollement_Container/>} />
+        <Route path="/Clearance" element={<Clearance_Container/>} />
+        <Route path="/Student_Course_Registration" element={<Student_Course_Registration_Container/>} />
+        <Route path="/Section" element={<Section_Container/>} />
+        <Route path="/Assessment" element={<Assessment_Container/>} />
+        <Route path="/Student" element={<Student_Container/>} />
+        <Route path="/Graduate" element={<Graduate_Container/>} />
+        <Route path="/AddSection" element={<Add_Section_Container/>} />
+        <Route path="/SemesterGrade" element={<Semester_Grade_Container/>} />
+        <Route path="/Attendance" element={<Attendance_Container/>} />
+
+
         <Route path="/Add_Course" element={<Add_Course />} />
         <Route path="/View_Course" element={<View_Course />} />
         <Route path="/Add_Curriculum" element={<Add_Curriculum />} />

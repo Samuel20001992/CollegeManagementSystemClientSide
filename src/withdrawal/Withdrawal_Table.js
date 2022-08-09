@@ -177,7 +177,10 @@ const EnhancedTableToolbar = (props) => {
   const { numSelected } = props;
   const [open1, setOpen1] = useState(false);
   const handleOpen1 = () => setOpen1(true);
-  const handleClose1 = () => setOpen1(false);
+  const handleClose1 = () => {
+    setOpen1(false)
+   window.location.reload();
+  };
  
   return (
     <Toolbar
@@ -185,23 +188,15 @@ const EnhancedTableToolbar = (props) => {
     >
       
       <div>
-        <Typography
-          // sx={{ flex: '1 1 100%' }}
-          variant="h6"
-          id="tableTitle"
-          component="div"
-          style={{float:'left'}}
-        >
-          Withdrawal Table
-        </Typography>
-                      <Button variant='contained' color='primary' style={{ marginLeft: '960px', float: 'right', right: 0 }} onClick={handleOpen1}>Add New</Button>
+        
+                      <Button variant='contained' color='primary' style={{ marginLeft: '750px', float: 'right', right: 0 }} onClick={handleOpen1}>Add New</Button>
                       <Modal
                         open={open1}
                         onClose={handleClose1}
                         aria-labelledby="modal-modal-title"
                         aria-describedby="modal-modal-description"
                         >
-                        <Box sx={style} style={{width:'300px', height:'300px'}}>
+                        <Box sx={style} style={{width:'300px', height:'400px'}}>
                             
                               <Typography id="modal-modal-title" variant="h6" component="h2">
                                 Add Withdrawal
@@ -276,7 +271,10 @@ const withdrawalRows =  useSelector((state) => state.withdrawalReducer);
   const rows = withdrawalRows;
   const [open1, setOpen1] = useState(false);
   const handleOpen1 = () => setOpen1(true);
-  const handleClose1 = () => setOpen1(false);
+  const handleClose1 = () => {
+    setOpen1(false)
+    window.location.reload();
+  };
   let student_id;
   return (
     <Box sx={{ width: '90%' }}>
@@ -333,7 +331,7 @@ const withdrawalRows =  useSelector((state) => state.withdrawalReducer);
                               <Typography id="modal-modal-title" variant="h6" component="h2">
                                 Add Readmission
                             </Typography>
-                         <Add_Readmission value={row._id} student_id={row.student_id} />
+                         <Add_Readmission value={row} student_id={row.student_id} />
                         </Box>
                         </Modal>
                       <TableCell align="left">

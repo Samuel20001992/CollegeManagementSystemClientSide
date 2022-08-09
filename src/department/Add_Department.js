@@ -27,7 +27,7 @@ function Add_Department() {
     })
     const [dept_head,setDept_Head] = useState();
     const handleDepartmentHead = (event) => {
-        setDepartment({...departmentData,department_head: event.target.value});
+        setDept_Head({...departmentData,department_head: event.target.value});
     }
 
     const dispatch = useDispatch();
@@ -44,38 +44,23 @@ function Add_Department() {
   const staffs =  useSelector((state) => state.staffReducer);
 
     return (
-        <div style={{
-            backgroundColor: 'white', height: '100vh', border: '1px solid blue' }}>
-            <Header />
+        <div >
         <form autoComplete="off" noValidate onSubmit={handleSubmit}>
-          <CardContent
-            component="form"
-            noValidate
-            autoComplete="off"
-            // className='d-flex'  
-                style={{
-                marginTop:'50px',
-                // marginLeft: '20px',
-                // marginRight: '20px',
-                marginBottom: '50px',
-                    backgroundColor: 'white',
-                //  borderRadius:'2em'
-            }}
-        >
-            <Grid container spacing={3}>
+        <CardContent style={{backgroundColor:'white', margin:'6px'}}>
+            <Grid container spacing={1} style={{padding:'6px'}}>
                 
                 <Grid item xs={6} md={4} sm={6}>
-                        < TextField id="outlined-basic" style={{ width: '300px', align: 'left' }} label="Faculty" variant="outlined" size="small"
+                        < TextField id="outlined-basic" style={{ width: '230px', align: 'left' }} label="Faculty" variant="outlined" size="small"
                      onChange={(e) => setDepartmentData({ ...departmentData, faculty: e.target.value })}
                         />
                 </Grid>
                 <Grid item xs={6} md={4} sm={6}>
-                        < TextField id="outlined-basic" style={{ width: '300px', align: 'left' }} label="Department Name" variant="outlined" size="small"
+                        < TextField id="outlined-basic" style={{ width: '230px', align: 'left' }} label="Department Name" variant="outlined" size="small"
                         onChange={(e) => setDepartmentData({ ...departmentData, department_name: e.target.value })}
                         />
                 </Grid>
                 <Grid item xs={6} md={4} sm={6}>
-                <FormControl  style={{ float:'left', marginLeft:'90px', width:'300px'}}   size="small">
+                <FormControl  style={{ float:'left', width:'230px'}}   size="small">
                     <InputLabel id="demo-simple-select-label">Department Head</InputLabel>
                     <Select
                     labelId="demo-simple-select-label"
@@ -92,22 +77,22 @@ function Add_Department() {
                 </FormControl>
                 </Grid>
                 <Grid item xs={6} md={4} sm={6}>
-                        < TextField id="outlined-basic" style={{ width: '300px', align: 'left' }} label="Phone" variant="outlined" size="small"
+                        < TextField id="outlined-basic" style={{ width: '230px', align: 'left' }} label="Phone" variant="outlined" size="small"
                         onChange={(e) => setDepartmentData({ ...departmentData, phone: e.target.value })}
                         />
                 </Grid>
                 <Grid item xs={6} md={4} sm={6}>
-                        < TextField id="outlined-basic" style={{ width: '300px', align: 'left' }} label="Email" variant="outlined" size="small"
+                        < TextField id="outlined-basic" style={{ width: '230px', align: 'left' }} label="Email" variant="outlined" size="small"
                         onChange={(e) => setDepartmentData({ ...departmentData, email: e.target.value })}
                         />
                 </Grid>
                 <Grid item xs={6} md={4} sm={6}>
-                        < TextField id="outlined-basic" style={{ width: '300px', align: 'left' }} label="Start Date" variant="outlined" size="small"
+                        < TextField id="outlined-basic" style={{ width: '230px', align: 'left' }} label="Start Date" variant="outlined" size="small"
                         onChange={(e) => setDepartmentData({ ...departmentData, start_date: e.target.value })}
                         />
                 </Grid>
                 <Grid item xs={6} md={4} sm={6}>
-                        < TextField id="outlined-basic" style={{ width: '300px', align: 'left' }} label="End Date" variant="outlined" size="small"
+                        < TextField id="outlined-basic" style={{ width: '230px', align: 'left' }} label="End Date" variant="outlined" size="small"
                         onChange={(e) => setDepartmentData({ ...departmentData, end_date: e.target.value })}
                         />
                 </Grid>

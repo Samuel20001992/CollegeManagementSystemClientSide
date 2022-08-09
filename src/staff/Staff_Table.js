@@ -27,7 +27,7 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import { visuallyHidden } from '@mui/utils';
 import {Link} from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { getStaffs } from '../action/staff.action';
+import { deleteStaff, getStaffs } from '../action/staff.action';
 
 
 const style = {
@@ -113,12 +113,7 @@ const headCells = [
     disablePadding: false,
     label: 'Email',
   },
-   {
-    id: 'action',
-    numeric: true,
-    disablePadding: false,
-    label: 'Action',
-  },
+   
   {
     id: 'opertations',
     numeric: true,
@@ -137,17 +132,7 @@ function EnhancedTableHead(props) {
   return (
     <TableHead>
       <TableRow>
-        <TableCell padding="checkbox">
-          <Checkbox
-            color="primary"
-            indeterminate={numSelected > 0 && numSelected < rowCount}
-            checked={rowCount > 0 && numSelected === rowCount}
-            onChange={onSelectAllClick}
-            inputProps={{
-              'aria-label': 'select all desserts',
-            }}
-          />
-        </TableCell>
+       
         {headCells.map((headCell) => (
           <TableCell
             key={headCell.id}
@@ -207,18 +192,7 @@ const EnhancedTableToolbar = (props) => {
         </Typography>
       ) : (
       <div>
-        <Typography
-          // sx={{ flex: '1 1 100%' }}
-          variant="h6"
-          id="tableTitle"
-          component="div"
-          style={{float:'left'}}
-        >
-          Staff Table
-            </Typography>
-             <Link to='/Add_Staff' style={{textDecoration:'none'}}>
-                <Button variant='contained'  style={{float:'right', marginLeft:'900px'}} color='primary'>Add New</Button>       
-            </Link>
+        
       </div>
         
       )}
@@ -321,6 +295,9 @@ export default function Staff_Table() {
   const staffRows =  useSelector((state) => state.staffReducer);
 
   const rows = staffRows;
+  const handleDelete = (id) => {
+    dispatch(deleteStaff(id));
+  }
   
   return (
     <Box sx={{ width: '90%' }}>
@@ -359,24 +336,13 @@ export default function Staff_Table() {
                       key={row.name}
                       selected={isItemSelected}
                     >
-                      <TableCell padding="checkbox">
-                        <Checkbox
-                          color="primary"
-                          checked={isItemSelected}
-                          inputProps={{
-                            'aria-labelledby': labelId,
-                          }}
-                        />
-                      </TableCell>
+                  
                       <TableCell align="left">{row.first_name}</TableCell>
                       <TableCell align="left">{row.middle_name}</TableCell>
                       <TableCell align="left">{row.last_name}</TableCell>
                       <TableCell align="left">{row.gender}</TableCell>
                       <TableCell align="left">{row.role}</TableCell> 
                       <TableCell align="left">{row.email}</TableCell>
-                      <TableCell align="left">
-                        <Button variant='contained' color='secondary' style={{marginLeft:'15px'}}>Add to Section</Button>
-                      </TableCell>
                       <TableCell align="left">
                         <VisibilityIcon color="primary" onClick={handleOpen1} />
                         <Modal
@@ -408,8 +374,8 @@ export default function Staff_Table() {
                             {/* <Add_Withdrawal/> */}
                         </Box>
                         </Modal>
-                        <DeleteIcon color="primary"/>
-                        <EditIcon color="primary"/>
+                        <DeleteIcon color="primary" onClick={handleDelete(row._id)}/>
+                        {/* <EditIcon color="primary"/> */}
                        </TableCell>
                     </TableRow>
                   );
@@ -441,12 +407,7 @@ export default function Staff_Table() {
         control={<Switch checked={dense} onChange={handleChangeDense} />}
         label="Dense padding"
       />
-      <center>
-        <Link to='/Add_Section'>
-          <Button variant='contained' color='primary' style={{ marginBottom:'80px'}}>Create Section</Button>
-        </Link>
-        <Button variant='contained' color='primary' style={{ marginBottom:'80px', marginLeft:'50px'}}>Cancel</Button>
-      </center>
+      
     </Box>
   );
 }

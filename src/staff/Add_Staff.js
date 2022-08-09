@@ -41,44 +41,29 @@ function Add_Staff() {
     }
    
     return (
-        <div style={{
-            backgroundColor: 'white', height: '100vh', border: '1px solid blue' }}>
-            <Header />
+        <div>
             
             <form autoComplete="off" noValidate onSubmit={handleSubmit}>
-          <CardContent
-            component="form"
-            noValidate
-            autoComplete="off"
-            // className='d-flex'  
-                style={{
-                marginTop:'50px',
-                // marginLeft: '20px',
-                // marginRight: '20px',
-                marginBottom: '50px',
-                    backgroundColor: 'white',
-                //  borderRadius:'2em'
-            }}
-        >
-            <Grid container spacing={3}>
+            <CardContent style={{backgroundColor:'white', margin:'6px'}}>
+            <Grid container spacing={1} style={{padding:'6px'}}>
                 
                 <Grid item xs={6} md={4} sm={6}>
-                        < TextField id="outlined-basic" style={{ width: '300px', align: 'left' }} label="First Name" variant="outlined" size="small"
+                        < TextField id="outlined-basic" style={{ width: '230px', align: 'left' }} label="First Name" variant="outlined" size="small"
                     onChange={(e) => setStaffData({ ...staffData, first_name: e.target.value })}
                         />
                 </Grid>
                 <Grid item xs={6} md={4} sm={6}>
-                        < TextField id="outlined-basic" style={{ width: '300px', align: 'left' }} label="Middle Name" variant="outlined" size="small"
+                        < TextField id="outlined-basic" style={{ width: '230px', align: 'left' }} label="Middle Name" variant="outlined" size="small"
                         onChange={(e) => setStaffData({ ...staffData, middle_name: e.target.value })}
                         />
                 </Grid>
                 <Grid item xs={6} md={4} sm={6}>
-                        < TextField id="outlined-basic" style={{ width: '300px', align: 'left' }} label="Last Name" variant="outlined" size="small"
+                        < TextField id="outlined-basic" style={{ width: '230px', align: 'left' }} label="Last Name" variant="outlined" size="small"
                         onChange={(e) => setStaffData({ ...staffData, last_name: e.target.value })}
                         />
                 </Grid>
                 <Grid item xs={6} md={4} sm={6}>
-                    <FormControl  style={{ float:'left', marginLeft:'90px', width:'300px'}}   size="small">
+                    <FormControl  style={{ float:'left', width:'230px'}}   size="small">
                     <InputLabel id="demo-simple-select-label">Gender</InputLabel>
                     <Select
                     labelId="demo-simple-select-label"
@@ -91,44 +76,49 @@ function Add_Staff() {
                           <MenuItem value={'Female'}>Female</MenuItem>
                     </Select>
                 </FormControl>
-                    </Grid>
-                <Grid item xs={6} md={4} sm={6}>
-                        < TextField id="outlined-basic" style={{ width: '300px', align: 'left' }} label="Field of Study" variant="outlined" size="small"
-                        onChange={(e) => setStaffData({ ...staffData, field_of_study: e.target.value })}
-                        />
-                    </Grid>    
-                    <Grid item xs={6} md={4} sm={6}>
-                        < TextField id="outlined-basic" style={{ width: '300px', align: 'left' }} label="Academic Rank" variant="outlined" size="small"
-                        onChange={(e) => setStaffData({ ...staffData, academic_rank: e.target.value })}
-                        />
-                    </Grid>
-                    <Grid item xs={6} md={4} sm={6}>
-                        < TextField id="outlined-basic" style={{ width: '300px', align: 'left' }} label="Position" variant="outlined" size="small"
-                        onChange={(e) => setStaffData({ ...staffData, position: e.target.value })}
-                        />
-                </Grid>
-                <Grid item xs={6} md={4} sm={6}>
-                        < TextField id="outlined-basic" style={{ width: '300px', align: 'left' }} label="Phone" variant="outlined" size="small"
+              </Grid>
+              <Grid item xs={6} md={4} sm={6}>
+                        < TextField id="outlined-basic" style={{ width: '230px', align: 'left' }} label="Phone" variant="outlined" size="small"
                         onChange={(e) => setStaffData({ ...staffData, phone: e.target.value })}
                         />
                 </Grid>
                 <Grid item xs={6} md={4} sm={6}>
-                        < TextField id="outlined-basic" style={{ width: '300px', align: 'left' }} label="Email" variant="outlined" size="small"
+                        < TextField id="outlined-basic" style={{ width: '230px', align: 'left' }} label="Email" variant="outlined" size="small"
                         onChange={(e) => setStaffData({ ...staffData, email: e.target.value })}
                         />
                 </Grid>
+              </Grid>
+              </CardContent>
+              <CardContent style={{backgroundColor:'white', margin:'6px'}}>
+             <Grid container spacing={1} style={{padding:'6px'}}>
                 <Grid item xs={6} md={4} sm={6}>
-                        < TextField id="outlined-basic" style={{ width: '300px', align: 'left' }} label="Photo" variant="outlined" size="small"
+                        < TextField id="outlined-basic" style={{ width: '230px', align: 'left' }} label="Field of Study" variant="outlined" size="small"
+                        onChange={(e) => setStaffData({ ...staffData, field_of_study: e.target.value })}
+                        />
+                    </Grid>    
+                    <Grid item xs={6} md={4} sm={6}>
+                        < TextField id="outlined-basic" style={{ width: '230px', align: 'left' }} label="Academic Rank" variant="outlined" size="small"
+                        onChange={(e) => setStaffData({ ...staffData, academic_rank: e.target.value })}
+                        />
+                    </Grid>
+                    <Grid item xs={6} md={4} sm={6}>
+                        < TextField id="outlined-basic" style={{ width: '230px', align: 'left' }} label="Position" variant="outlined" size="small"
+                        onChange={(e) => setStaffData({ ...staffData, position: e.target.value })}
+                        />
+                </Grid>
+                
+                <Grid item xs={6} md={4} sm={6}>
+                        < TextField id="outlined-basic" style={{ width: '230px', align: 'left' }} label="Photo" variant="outlined" size="small"
                         onChange={(e) => setStaffData({ ...staffData, photo: e.target.value })}
                         />
                 </Grid>
                 <Grid item xs={6} md={4} sm={6}>
-                        < TextField id="outlined-basic" style={{ width: '300px', align: 'left' }} label="Role" variant="outlined" size="small"
+                        < TextField id="outlined-basic" style={{ width: '230px', align: 'left' }} label="Role" variant="outlined" size="small"
                         onChange={(e) => setStaffData({ ...staffData, role: e.target.value })}
                         />
                 </Grid>
                 <Grid item xs={6} md={4} sm={6}>
-                        < TextField id="outlined-basic" style={{ width: '300px', align: 'left' }} label="Employement Type" variant="outlined" size="small"
+                        < TextField id="outlined-basic" style={{ width: '230px', align: 'left' }} label="Employement Type" variant="outlined" size="small"
                         onChange={(e) => setStaffData({ ...staffData, employement_type: e.target.value })}
                         />
                 </Grid>   

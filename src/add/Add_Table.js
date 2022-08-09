@@ -89,6 +89,12 @@ function stableSort(array, comparator) {
 
 const headCells = [
   {
+    id: 'add_id',
+    numeric: false,
+    disablePadding: false,
+    label: '#',
+  },
+  {
     id: 'student_id',
     numeric: false,
     disablePadding: true,
@@ -144,7 +150,7 @@ function EnhancedTableHead(props) {
   return (
     <TableHead>
       <TableRow>
-        <TableCell padding="checkbox">
+        {/* <TableCell padding="checkbox">
           <Checkbox
             color="primary"
             indeterminate={numSelected > 0 && numSelected < rowCount}
@@ -154,7 +160,7 @@ function EnhancedTableHead(props) {
               'aria-label': 'select all desserts',
             }}
           />
-        </TableCell>
+        </TableCell> */}
         {headCells.map((headCell) => (
           <TableCell
             key={headCell.id}
@@ -216,18 +222,8 @@ const EnhancedTableToolbar = (props) => {
         </Typography>
       ) : (
       <div>
-        <Typography
-          // sx={{ flex: '1 1 100%' }}
-          variant="h6"
-          id="tableTitle"
-          component="div"
-          style={{float:'left'}}
-        >
-          Add Students Table
-            </Typography>
-            <Link to='/Add_Add' style={{textDecoration:'none'}}>
-                <Button variant='contained'  style={{float:'right', marginLeft:'900px'}} color='primary'>Add New</Button>       
-            </Link>
+        
+            
       </div>
         
       )}
@@ -331,7 +327,7 @@ export default function Add_Table() {
   return (
     <Box sx={{ width: '90%' }}>
       <Paper sx={{ width: '90%', mb: 2,ml:2,mr:2,mt:2}}>
-        <EnhancedTableToolbar numSelected={selected.length} />
+        {/* <EnhancedTableToolbar numSelected={selected.length} /> */}
         <TableContainer>
           <Table
             sx={{ minWidth: 750 }}
@@ -365,7 +361,7 @@ export default function Add_Table() {
                       key={row.name}
                       selected={isItemSelected}
                     >
-                      <TableCell padding="checkbox">
+                      {/* <TableCell padding="checkbox">
                         <Checkbox
                           color="primary"
                           checked={isItemSelected}
@@ -373,17 +369,18 @@ export default function Add_Table() {
                             'aria-labelledby': labelId,
                           }}
                         />
-                      </TableCell>
+                      </TableCell> */}
+                      <TableCell align="left">{row.add_id}</TableCell>
                       <TableCell align="left">{row.student_id}</TableCell>
                       <TableCell align="left">{row.section}</TableCell>
                       <TableCell align="left">{row.course_code}</TableCell>
-                      <TableCell align="left">{row.academic_year}</TableCell>
+                      <TableCell align="left">{row.accademic_year}</TableCell>
                       <TableCell align="left">{row.semester}</TableCell>
                       <TableCell align="left">{row.advisor}</TableCell>
                       <TableCell align="left">
-                        <VisibilityIcon color="primary" />
+                        {/* <VisibilityIcon color="primary" /> */}
                         <DeleteIcon color="primary" onClick={(e) => { handleDelete(row._id)}} />
-                        <EditIcon color="primary"/>
+                        {/* <EditIcon color="primary"/> */}
                       </TableCell>
                     </TableRow>
                   );

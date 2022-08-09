@@ -7,58 +7,67 @@ import { createWithdrawal } from '../action/withdrawal.action';
 import { deleteStudent, getStudents } from '../action/student.action';
 import {FormControl, InputLabel, Select, MenuItem} from '@mui/material';
 function Add_Withdrawal() {
-    const [withdrawalData, setWithdrawalData] = useState({
+  
+  const dispatch = useDispatch();
+  const [withdrawalData, setWithdrawalData] = useState({
       
-        student_id:'', date:'', reason:'',phone:'', letter:'', remark :''
-   
+        student_id:'', date:'', reason:'',phone:'', letter:'', remark :'',
+         first_name:'', middle_name:'', last_name:'',gender:'', department:'',
+         program:'', learning_modality:'', photo:''
     })
 
     
+    const [currentId, setCurrentId] = useState(0);
+    useEffect(() => {
+      dispatch(getStudents());
+    }, [currentId, dispatch]);
+
+  const studentRows =  useSelector((state) => state.studentReducer);
+
+  const datas = studentRows;
+
   
-
-  const staffRows =  useSelector((state) => state.studentReducer);
-
-  const datas = staffRows;
-
-  const dispatch = useDispatch();
     const handleSubmit = async (e) => {
     e.preventDefault();
-      dispatch(createWithdrawal(withdrawalData)); 
+    let x = 0;
+    datas.map((data)=>{
+      if(data.student_id == withdrawalData.student_id){
+        x++;
+      }
+    }) 
+    
+    if(x == 0){
+      alert("The student Id doesn't exist")
+      return;
+    }
+
       datas.map((data) => {
         if (withdrawalData.student_id == data.student_id) {
+          withdrawalData.first_name = data.first_name;
+          withdrawalData.middle_name = data.middle_name;
+          withdrawalData.last_name = data.last_name;
+          withdrawalData.gender = data.gender;
+          withdrawalData.department = data.department;
+          withdrawalData.program = data.program;
+          withdrawalData.learning_modality = data.learning_modality;
+          withdrawalData.photo = data.photo;
+
+          dispatch(createWithdrawal(withdrawalData)); 
           dispatch(deleteStudent(data._id))
         }
    })   
   }
 
-  const [currentId, setCurrentId] = useState(0);
-  useEffect(() => {
-    dispatch(getStudents());
-  }, [currentId, dispatch]);
+  
 
   return (
       <div>
           <form autoComplete="off" noValidate onSubmit={handleSubmit}>
             <Grid container spacing={3}>
                 <Grid item xs={12} md={12} sm={12}>
-                  <FormControl  style={{ float:'left', marginLeft:'0px', width:'300px'}}   size="small">
-                    <InputLabel id="demo-simple-select-label">Student Id</InputLabel>
-                    <Select
-                    labelId="demo-simple-select-label"
-                    id="demo-simple-select"
-                    value={withdrawalData.student_id}
-                    name='student_id'
+                  < TextField id="outlined-basic" style={{ width: '300px', align: 'left' }} label="Student Id" variant="outlined" size="small" multiline
                     onChange={(e) => setWithdrawalData({ ...withdrawalData, student_id: e.target.value })}
-                                >
-                                    {
-                                        datas.map((data) => {
-                                            return <MenuItem value={data.student_id}>{data.student_id}</MenuItem>
-                                        })
-                                    }
-                          
-                         
-                    </Select>
-                </FormControl>
+                    />
                 </Grid>
                 <Grid item xs={12} md={12} sm={12}>
                   < TextField id="outlined-basic" style={{ width: '300px', align: 'left' }} label="Reason" variant="outlined" size="small" multiline

@@ -25,25 +25,12 @@ export const HighSchool = (props) => {
     }
     
     return (
-       <CardContent
-            component="form"
-            
-            noValidate
-            autoComplete="off"
-            className='d-flex'
-            style={{
-                backgroundColor: 'white',
-            }}
-        >
-            <Grid container spacing={3}>
-                <Grid item xs={12} md={12} sm={12}>
-                    <Typography variant='h6' style={{float:'Left'}}> High School</Typography>
-                </Grid> 
+       <> 
             <Grid item xs={6} md={4} sm={6}>
-               <TextField id="outlined-basic" style={{ width:'300px'}} label="Grade 12 National Exam Result Certificate" variant="outlined"  size='small' />
+                <TextField id="outlined-basic" style={{ width: '230px'}} label="Grade 12 National Exam Result Certificate" variant="outlined"  size='small' />
             </Grid>
             <Grid item xs={6} md={4} sm={6}>
-                <FormControl size='small' style={{ float:'left', marginLeft:'90px', width:'300px'}}   sx={{ maxWidth: 520 }}>
+                <FormControl size='small' style={{ float:'left',  width:'230px'}}   sx={{ maxWidth: 520 }}>
                         <InputLabel id="demo-simple-select-label">Grade 12 National Exam Taken Year</InputLabel>
                         <Select
                         labelId="demo-simple-select-label"
@@ -67,11 +54,12 @@ export const HighSchool = (props) => {
                                 type="file"
                                 accept='.png, .jpg, .jpeng'
                                 name='grad10_national_exam'
+                                style={{marginLeft:'10px'}}
                                 onChange={(e) => props.setApplicantData({ ...props.applicantData, grad10_national_exam: e.target.files[0] })}
                         />
             </Grid>
             <Grid item xs={6} md={4} sm={6}>
-                <FormControl size='small' style={{ float:'left', marginLeft:'90px', width:'300px'}}  sx={{ maxWidth: 520 }}>
+                <FormControl size='small' style={{ float:'left', width:'230px'}}  sx={{ maxWidth: 520 }}>
                         <InputLabel id="demo-simple-select-label">Grade 10 National Exam Taken Year</InputLabel>
                         <Select
                         labelId="demo-simple-select-label"
@@ -89,10 +77,9 @@ export const HighSchool = (props) => {
                 </FormControl>
             </Grid>
             <Grid item xs={6} md={4} sm={6}>
-               <TextField id="outlined-basic" style={{width:'300px'}} label="Grade 9 - 12 Transcript" variant="outlined" size='small' />
+               <TextField id="outlined-basic" style={{width:'230px'}} label="Grade 9 - 12 Transcript" variant="outlined" size='small' />
             </Grid>
-        </Grid>
-      </CardContent>
+      </>
        
         
     );
@@ -100,31 +87,17 @@ export const HighSchool = (props) => {
 
 export const Degree = () => {
     return (
-        <CardContent
-            component="form"
-            
-            noValidate
-            autoComplete="off"
-            className='d-flex'
-            style={{
-                backgroundColor: 'white',
-            }}
-        >
-            <Grid container spacing={3}>
-                <Grid item xs={12} md={12} sm={12}>
-                    <Typography variant='h6' style={{float:'Left'}}> Degree</Typography>
-                </Grid> 
+        <>
             <Grid item xs={6} md={4} sm={6}>
-               <TextField id="outlined-basic" style={{align:'left', width:'300px'}} label="Temporary or Original Degree BA/BSC" variant="outlined"  size='small' />
+               <TextField id="outlined-basic" style={{align:'left', width:'230px'}} label="Temporary or Original Degree BA/BSC" variant="outlined"  size='small' />
             </Grid>
             <Grid item xs={6} md={4} sm={6}>
-               <TextField id="outlined-basic" style={{align:'left', width:'300px'}} label="Student Copy" variant="outlined"  size='small' />
+               <TextField id="outlined-basic" style={{align:'left', width:'230px'}} label="Student Copy" variant="outlined"  size='small' />
             </Grid>
             <Grid item xs={6} md={4} sm={6}>
-               <TextField id="outlined-basic" style={{align:'left', width:'300px'}} label="Offical transcript" variant="outlined"  size='small' />
+               <TextField id="outlined-basic" style={{align:'left', width:'230px', marginLeft:'10px'}} label="Offical transcript" variant="outlined"  size='small' />
             </Grid>
-        </Grid>
-        </CardContent>
+        </>
     )
 }
 
@@ -147,25 +120,12 @@ export const TVET = () => {
         setYear2(event.target.value);
     }
     return (
-        <CardContent
-            component="form"
-            
-            noValidate
-            autoComplete="off"
-            className='d-flex'
-            style={{
-                backgroundColor: 'white',
-            }}
-        >
-            <Grid container spacing={3}>
-                <Grid item xs={12} md={12} sm={12}>
-                    <Typography variant='h6' style={{float:'Left'}}> TVET</Typography>
-                </Grid> 
+        <>
             <Grid item xs={6} md={4} sm={6}>
-               <TextField id="outlined-basic" style={{align:'left', width:'300px'}} label="Grade 10 national Exam certificate" variant="outlined"  size='small' />
+               <TextField id="outlined-basic" style={{align:'left', width:'230px'}} label="Grade 10 national Exam certificate" variant="outlined"  size='small' />
             </Grid>
             <Grid item xs={6} md={4} sm={6}>
-                <FormControl size='small' style={{ float:'left', marginLeft:'90px', width:'300px'}}   sx={{ maxWidth: 520 }}>
+                <FormControl size='small' style={{ float:'left', width:'230px'}}   sx={{ maxWidth: 520 }}>
                         <InputLabel id="demo-simple-select-label">Grade 10 National Exam Taken Year</InputLabel>
                         <Select
                         labelId="demo-simple-select-label"
@@ -185,10 +145,10 @@ export const TVET = () => {
                 </FormControl>
             </Grid>    
             <Grid item xs={6} md={4} sm={6}>
-               <TextField id="outlined-basic" style={{align:'left', width:'300px'}} label="Grade 9 - 10 transcript" variant="outlined"  size='small' />
+               <TextField id="outlined-basic" style={{align:'left', width:'230px', marginLeft:'10px'}} label="Grade 9 - 10 transcript" variant="outlined"  size='small' />
             </Grid>
                 <Grid item xs={6} md={4} sm={6}>
-                <FormControl size='small' style={{ float:'left', marginLeft:'90px', width:'300px'}}   sx={{ maxWidth: 520 }}>
+                <FormControl size='small' style={{ float:'left', width:'230px'}}   sx={{ maxWidth: 520 }}>
                         <InputLabel id="demo-simple-select-label">Grade 10 National Exam Taken Year</InputLabel>
                         <Select
                         labelId="demo-simple-select-label"
@@ -208,10 +168,10 @@ export const TVET = () => {
                     </FormControl>
                     </Grid>
             <Grid item xs={6} md={4} sm={6}>
-               <TextField id="outlined-basic" style={{align:'left', width:'300px'}} label="COC level certificate id" variant="outlined"  size='small' />
+               <TextField id="outlined-basic" style={{align:'left', width:'230px'}} label="COC level certificate id" variant="outlined"  size='small' />
             </Grid>
             <Grid item xs={6} md={4} sm={6}>
-                <FormControl size='small' style={{ float:'left', marginLeft:'90px', width:'300px'}}   sx={{ maxWidth: 520 }}>
+                <FormControl size='small' style={{ float:'left' , marginLeft:'10px',  width:'230px'}}   sx={{ maxWidth: 520 }}>
                         <InputLabel id="demo-simple-select-label">Grade 10 National Exam Taken Year</InputLabel>
                         <Select
                         labelId="demo-simple-select-label"
@@ -231,10 +191,9 @@ export const TVET = () => {
                 </FormControl>
             </Grid> 
             <Grid item xs={6} md={4} sm={6}>
-               <TextField id="outlined-basic" style={{align:'left', width:'300px'}} label="COC level certificate" variant="outlined"  size='small' />
+               <TextField id="outlined-basic" style={{align:'left', width:'230px'}} label="COC level certificate" variant="outlined"  size='small' />
             </Grid>
-        </Grid>
-        </CardContent>
+        </>
     )
 }
 
@@ -242,31 +201,18 @@ export const TVET = () => {
 
 export const Masters = () => {
     return (
-        <CardContent
-            component="form"
-            
-            noValidate
-            autoComplete="off"
-            className='d-flex'
-            style={{
-                backgroundColor: 'white',
-            }}
-        >
-            <Grid container spacing={3}>
-                <Grid item xs={12} md={12} sm={12}>
-                    <Typography variant='h6' style={{float:'Left'}}> Masters</Typography>
-                </Grid> 
+        <>
+                
             <Grid item xs={6} md={4} sm={6}>
-               <TextField id="outlined-basic" style={{align:'left', width:'300px'}} label="Temporary or Original Degree MA/MSC" variant="outlined"  size='small' />
+               <TextField id="outlined-basic" style={{align:'left', width:'230px'}} label="Temporary or Original Degree MA/MSC" variant="outlined"  size='small' />
             </Grid>
             <Grid item xs={6} md={4} sm={6}>
-               <TextField id="outlined-basic" style={{align:'left', width:'300px'}} label="Student Copy" variant="outlined"  size='small' />
+               <TextField id="outlined-basic" style={{align:'left', width:'230px'}} label="Student Copy" variant="outlined"  size='small' />
             </Grid>
             <Grid item xs={6} md={4} sm={6}>
-               <TextField id="outlined-basic" style={{align:'left', width:'300px'}} label="Offical transcript" variant="outlined"  size='small' />
+               <TextField id="outlined-basic" style={{align:'left', width:'230px', marginLeft:'10px'}} label="Offical transcript" variant="outlined"  size='small' />
             </Grid>
-        </Grid>
-        </CardContent>
+        </>
     )
 }
 
@@ -283,22 +229,9 @@ export const Transfer = () => {
         setEducation(event.target.value);
     }
     return (
-        <CardContent
-            component="form"
-            
-            noValidate
-            autoComplete="off"
-            className='d-flex'
-            style={{
-                backgroundColor: 'white',
-            }}
-        >
-            <Grid container spacing={3}>
-                <Grid item xs={12} md={12} sm={12}>
-                    <Typography variant='h6' style={{float:'Left'}}> Transfer</Typography>
-                </Grid> 
+        <>
                 <Grid item xs={6} md={4} sm ={6}>
-                    <FormControl  style={{ float:'left', marginLeft:'90px', width:'300px'}}   size="small">
+                    <FormControl  style={{ float:'left', width:'230px'}}   size="small">
                     <InputLabel id="demo-simple-select-label">Admission Based on</InputLabel>
                     <Select
                     labelId="demo-simple-select-label"
@@ -320,11 +253,10 @@ export const Transfer = () => {
             
                 
             <Grid item xs={6} md={4} sm={6}>
-               <TextField id="outlined-basic" style={{align:'left', width:'300px'}} label="Previous institution name" variant="outlined"  size='small' />
+               <TextField id="outlined-basic" style={{align:'left', width:'230px'}} label="Previous institution name" variant="outlined"  size='small' />
             </Grid>
             <Grid item xs={6} md={4} sm={6}>
-               <TextField id="outlined-basic" style={{align:'left', width:'300px'}} label="Student Copy" variant="outlined"  size='small' />
-            </Grid>
+               <TextField id="outlined-basic" style={{align:'left', width:'230px', marginLeft:'10px'}} label="Student Copy" variant="outlined"  size='small' />
             </Grid>
             {education == 'High School' ?
                     <HighSchool/> : null
@@ -346,7 +278,7 @@ export const Transfer = () => {
                 <TVET/> : null
                     
             }
-        </CardContent>
+        </>
     )
 }
 
@@ -359,26 +291,12 @@ export const Equivalence = () => {
         setYear1(event.target.value);
     }
     return (
-        <CardContent
-            component="form"
-            
-            noValidate
-            autoComplete="off"
-            className='d-flex'
-            style={{
-                backgroundColor: 'white',
-            }}
-        >
-       
-        <Grid container spacing={3}>
-                <Grid item xs={12} md={12} sm={12}>
-                    <Typography variant='h6' style={{float:'Left'}}> Equivalence</Typography>
-                </Grid>   
+        <>   
             <Grid item xs={6} md={4} sm={6}>
-               <TextField id="outlined-basic" style={{align:'left', width:'300px'}} label="HERQA reference number" variant="outlined"  size='small' />
+               <TextField id="outlined-basic" style={{align:'left', width:'230px'}} label="HERQA reference number" variant="outlined"  size='small' />
                 </Grid>
                 <Grid item xs={6} md={4} sm={6}>
-                <FormControl size='small' style={{ float:'left', marginLeft:'90px', width:'300px'}}  sx={{ maxWidth: 520 }}>
+                <FormControl size='small' style={{ float:'left', marginLeft:'90px', width:'230px'}}  sx={{ maxWidth: 520 }}>
                         <InputLabel id="demo-simple-select-label">HERQA equivaluence letter issued date</InputLabel>
                         <Select
                         labelId="demo-simple-select-label"
@@ -396,13 +314,12 @@ export const Equivalence = () => {
                     </FormControl>
                     </Grid>
             <Grid item xs={6} md={4} sm={6}>
-               <TextField id="outlined-basic" style={{align:'left', width:'300px'}} label="HERQA equivaluence letter" variant="outlined"  size='small' />
+               <TextField id="outlined-basic" style={{align:'left', width:'230px', marginLeft:'10px'}} label="HERQA equivaluence letter" variant="outlined"  size='small' />
             </Grid>
             <Grid item xs={6} md={4} sm={6}>
-               <TextField id="outlined-basic" style={{align:'left', width:'300px'}} label="Educational documents" variant="outlined"  size='small' />
+               <TextField id="outlined-basic" style={{align:'left', width:'230px'}} label="Educational documents" variant="outlined"  size='small' />
             </Grid>
-        </Grid>
-        </CardContent>
+        </>
     )
 }
 

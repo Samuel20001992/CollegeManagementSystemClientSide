@@ -6,3 +6,4 @@ export const fetchClearances = () => axios.get(url);
 export const createClearance = (newClearance) => axios.post(url, newClearance);
 export const updateClearance = (id, updatedClearance) => axios.patch(`${url}/${id}`, updatedClearance);
 export const deleteClearance = (id) => axios.delete(`${url}/${id}`);
+export const fetchOne =  (clearance_id) => axios.get(`${url}/${clearance_id}`);

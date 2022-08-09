@@ -99,10 +99,10 @@ function stableSort(array, comparator) {
 
 const headCells = [
   {
-    id: 'section',
+    id: 'id',
     numeric: false,
-    disablePadding: true,
-    label: 'Section',
+    disablePadding: false,
+    label: '#',
   },
   {
     id: 'attendance_year',
@@ -143,17 +143,7 @@ function EnhancedTableHead(props) {
   return (
     <TableHead>
       <TableRow>
-        <TableCell padding="checkbox">
-          <Checkbox
-            color="primary"
-            indeterminate={numSelected > 0 && numSelected < rowCount}
-            checked={rowCount > 0 && numSelected === rowCount}
-            onChange={onSelectAllClick}
-            inputProps={{
-              'aria-label': 'select all desserts',
-            }}
-          />
-        </TableCell>
+        
         {headCells.map((headCell) => (
           <TableCell
             key={headCell.id}
@@ -215,18 +205,7 @@ const EnhancedTableToolbar = (props) => {
         </Typography>
       ) : (
       <div>
-        <Typography
-          // sx={{ flex: '1 1 100%' }}
-          variant="h6"
-          id="tableTitle"
-          component="div"
-          style={{float:'left'}}
-        >
-          Course Breakdown Table
-        </Typography>
-         <Link to='/Add_Course_Breakdown' style={{textDecoration:'none'}}>
-                <Button variant='contained'  style={{float:'right', marginLeft:'860px'}} color='primary'>Add New</Button>       
-            </Link>
+        
       </div>
         
       )}
@@ -331,7 +310,7 @@ export default function Course_Breakdown_Table() {
   return (
     <Box sx={{ width: '90%' }}>
       <Paper sx={{ width: '90%', mb: 2,ml:2,mr:2,mt:2}}>
-        <EnhancedTableToolbar numSelected={selected.length} />
+        {/* <EnhancedTableToolbar numSelected={selected.length} /> */}
         <TableContainer>
           <Table
             sx={{ minWidth: 750 }}
@@ -365,25 +344,16 @@ export default function Course_Breakdown_Table() {
                       key={row.name}
                       selected={isItemSelected}
                     >
-                      <TableCell padding="checkbox">
-                        <Checkbox
-                          color="primary"
-                          checked={isItemSelected}
-                          inputProps={{
-                            'aria-labelledby': labelId,
-                          }}
-                        />
-                      </TableCell>
-                      <TableCell align="left">{row.section}</TableCell>
+                      <TableCell align="left">{row.course_breakdown_id}</TableCell>
                       <TableCell align="left">{row.attendance_year}</TableCell>
                       <TableCell align="left">{row.semester}</TableCell>
                       <TableCell align="left">{row.course_code}</TableCell>
                       <TableCell align="left">
-                        <VisibilityIcon color="primary" />
+                        {/* <VisibilityIcon color="primary" /> */}
                         <DeleteIcon color="primary" onClick={(e) => {
                           handleDelete(row._id)
                         } } />
-                        <EditIcon color="primary"/>
+                        {/* <EditIcon color="primary"/> */}
                       </TableCell>
                     </TableRow>
                   );

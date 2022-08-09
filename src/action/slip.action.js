@@ -56,3 +56,5 @@ export const deleteSlip = (id) => async (dispatch) => {
     console.log(error.message);
   }
 };
+
+

@@ -18,6 +18,11 @@ import slipReducer from './slip.reducer';
 import semester_gradeReducer from './semester_grade.reducer';
 import totalsReducer from './totals.reducer';
 import applicationReducer from './application.reducer';
+import student_detailReducer from './student_detail.reducer';
+import academic_calanderReducer from './academic_calander.reducer';
+import sectionReducer from './section.reducer';
+import student_sectionReducer from './student_section.reducer';
+import attendanceReducer from './attendance.reducer';
 
 export const reducers = combineReducers({
     readmissionReducer,
@@ -37,5 +42,11 @@ export const reducers = combineReducers({
     slipReducer,
     semester_gradeReducer,
     totalsReducer,
-    applicationReducer
+    applicationReducer,
+    studentReducer,
+    student_detailReducer,
+    academic_calanderReducer,
+    sectionReducer,
+    attendanceReducer,
+    student_sectionReducer
 });

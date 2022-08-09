@@ -6,3 +6,4 @@ export const fetchSections = () => axios.get(url);
 export const createSection = (newSection) => axios.post(url, newSection);
 export const updateSection = (id, updatedSection) => axios.patch(`${url}/${id}`, updatedSection);
 export const deleteSection = (id) => axios.delete(`${url}/${id}`);
+export const fetchOne =  (section_id) => axios.get(`${url}/${section_id}`);

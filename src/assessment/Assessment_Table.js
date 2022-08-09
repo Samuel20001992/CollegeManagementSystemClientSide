@@ -1,3 +1,4 @@
+
 import React,{useEffect,  useState} from "react";
 import ReactDOM from "react-dom";
 import { makeStyles } from "@material-ui/core/styles";
@@ -229,8 +230,76 @@ function Assessment_Table() {
 
   } 
 
+ const [identifier, setIdentifier] = useState('');
+  
+
+
   const handleRows = (row) => {
-    if (!editMode) {
+   
+    if (editMode) {
+      if(row.student_id == identifier){
+        return (
+          <>
+              <TableCell align="left" className={classes.tableCell}>
+                    <Input
+                      value={assessment.first_assessment}
+                      onChange={(e) => { setAssessment({ ...assessment, first_assessment: e.target.value }) }}
+                      className={classes.input}
+                    />
+            </TableCell>
+            <TableCell align="left" className={classes.tableCell}>
+                    <Input
+                      value={assessment.second_assessment}
+                onChange={(e) => { setAssessment({ ...assessment, second_assessment: e.target.value }) }}
+                      className={classes.input}
+                    />
+            </TableCell>
+            <TableCell align="left" className={classes.tableCell}>
+                    <Input
+                      value={assessment.third_assessment}
+                      onChange={(e) => { setAssessment({ ...assessment, third_assessment: e.target.value }) }}
+                      className={classes.input}
+                    />
+            </TableCell>
+            <TableCell align="left" className={classes.tableCell}>
+                    <Input
+                      value={assessment.fourth_assessment}
+                      onChange={(e) => { setAssessment({ ...assessment, fourth_assessment: e.target.value }) }}
+                      className={classes.input}
+                    />
+            </TableCell>
+            <TableCell align="left" className={classes.tableCell}>
+                    <Input
+                      value={assessment.fifth_assessment}
+                      onChange={(e) => { setAssessment({ ...assessment, fifth_assessment: e.target.value }) }}
+                      className={classes.input}
+                    />
+            </TableCell>
+            <TableCell align="left" className={classes.tableCell}>
+                    <Input
+                      value={assessment.final_assessment}
+                      onChange={(e) => { setAssessment({ ...assessment, final_assessment: e.target.value }) }}
+                      className={classes.input}
+                    />
+            </TableCell>
+            
+          </>
+        ) 
+      }else{
+        return (
+          <>
+                <TableCell onChange>{row.first_assessment}</TableCell>
+                <TableCell onChange>{row.second_assessment}</TableCell>
+                <TableCell onChange>{row.third_assessment}</TableCell>
+                <TableCell onChange>{row.fourth_assessment}</TableCell>
+                <TableCell onChange>{row.fifth_assessment}</TableCell>
+                <TableCell onChange>{row.final_assessment}</TableCell>
+          </>
+        )
+      }
+      
+    } 
+    else {
       return (
         <>
               <TableCell onChange>{row.first_assessment}</TableCell>
@@ -241,63 +310,26 @@ function Assessment_Table() {
               <TableCell onChange>{row.final_assessment}</TableCell>
         </>
       )
-    } 
-    else {
-      return (
-        <>
-            <TableCell align="left" className={classes.tableCell}>
-                  <Input
-                    value={assessment.first_assessment}
-                    onChange={(e) => { setAssessment({ ...assessment, first_assessment: e.target.value }) }}
-                    className={classes.input}
-                  />
-          </TableCell>
-          <TableCell align="left" className={classes.tableCell}>
-                  <Input
-                    value={assessment.second_assessment}
-              onChange={(e) => { setAssessment({ ...assessment, second_assessment: e.target.value }) }}
-                    className={classes.input}
-                  />
-          </TableCell>
-          <TableCell align="left" className={classes.tableCell}>
-                  <Input
-                    value={assessment.third_assessment}
-                    onChange={(e) => { setAssessment({ ...assessment, third_assessment: e.target.value }) }}
-                    className={classes.input}
-                  />
-          </TableCell>
-          <TableCell align="left" className={classes.tableCell}>
-                  <Input
-                    value={assessment.fourth_assessment}
-                    onChange={(e) => { setAssessment({ ...assessment, fourth_assessment: e.target.value }) }}
-                    className={classes.input}
-                  />
-          </TableCell>
-          <TableCell align="left" className={classes.tableCell}>
-                  <Input
-                    value={assessment.fifth_assessment}
-                    onChange={(e) => { setAssessment({ ...assessment, fifth_assessment: e.target.value }) }}
-                    className={classes.input}
-                  />
-          </TableCell>
-          <TableCell align="left" className={classes.tableCell}>
-                  <Input
-                    value={assessment.final_assessment}
-                    onChange={(e) => { setAssessment({ ...assessment, final_assessment: e.target.value }) }}
-                    className={classes.input}
-                  />
-          </TableCell>
-          
-        </>
-      )
       }
   }
 
+
+  let A_plus = 0;
+  let A = 0;
+  let A_minus = 0;
+  let B_plus = 0;
+  let B = 0;
+  let B_minus = 0;
+  let C_plus = 0;
+  let C = 0;
+  let C_minus = 0;
+  let D = 0;
+  let F = 0;
   return (
+    <>
     <Paper className={classes.root}>
 
       <Table className={classes.table} aria-label="caption table">
-        <caption>A barbone structure table example with a caption</caption>
         <TableHead>
           <TableRow>
             <TableCell align="left" />
@@ -314,14 +346,45 @@ function Assessment_Table() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map(row => (
+          {rows.map(row =>  {if(row.course_code == 'fa') 
+          {
+            switch(row.letter_grade){
+              case 'A+': A_plus++;
+              break;
+              case 'A': A++;
+              break;
+              case 'A-': A_minus++;
+              break;
+              case 'B+': B_plus++;
+              break;
+              case 'B': B++;
+              break;
+              case 'B-': B_minus++;
+              break;
+              case 'C+': C_plus++;
+              break;
+              case 'C': C++;
+              break;
+              case 'C-': C_minus++;
+              break;
+              case 'D': D++;
+              break;
+              case 'F': A_minus++;
+              break;
+            }
+            
+            return(
+            
             <TableRow key={row.id}>
               <TableCell className={classes.selectTableCell}>
                 
                 {!editMode ? (
                   <IconButton
                     aria-label="delete"
-                    onClick={() => setEditMode(true)}
+                    onClick={() =>{
+                       setEditMode(true)
+                      setIdentifier(row.student_id)
+                      }}
                   >
                     <EditIcon />
                   </IconButton>
@@ -332,6 +395,7 @@ function Assessment_Table() {
                       onClick={() => {
                         handleSubmit(row);
                         setEditMode(false);
+                        setIdentifier('');
                       }}
                     >
                       <DoneIcon />
@@ -340,6 +404,7 @@ function Assessment_Table() {
                       aria-label="revert"
                       onClick={() => {
                         setEditMode(false);
+                        setIdentifier('');
                       }}
                     >
                       <RevertIcon />
@@ -355,23 +420,53 @@ function Assessment_Table() {
               <TableCell onChange>{row.letter_grade}</TableCell>
             </TableRow>
 
-          ))}
+          )}}
+          )
+          }
+        </TableBody>
+      </Table>
+      </Paper>
+      <Paper className={classes.root}>
+
+      <Table className={classes.table} aria-label="caption table" style={{marginTop:'10px'}}>
+        <TableHead>
+          <TableRow>
+            
+            <TableCell align="left">A+</TableCell>
+            <TableCell align="left">A</TableCell>
+            <TableCell align="left">A-</TableCell>
+            <TableCell align="left">B+</TableCell>
+            <TableCell align="left">B</TableCell>
+            <TableCell align="left">B-</TableCell>
+            <TableCell align="left">C+</TableCell>
+            <TableCell align="left">C</TableCell>
+            <TableCell align="left">C-</TableCell>
+            <TableCell align="left">D</TableCell>
+            <TableCell align="left">F</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+            <TableRow>
+              
+              <TableCell align="left">{A_plus}</TableCell>
+              <TableCell align="left">{A}</TableCell>
+              <TableCell align="left">{A_minus}</TableCell>
+              <TableCell align="left">{B_plus}</TableCell>
+              <TableCell align="left">{B}</TableCell>
+              <TableCell align="left">{B_minus}</TableCell>
+              <TableCell align="left">{C_plus}</TableCell>
+              <TableCell align="left">{C}</TableCell>
+              <TableCell align="left">{C_minus}</TableCell>
+              <TableCell align="left">{D}</TableCell>
+              <TableCell align="left">{F}</TableCell>
+            </TableRow>
+
         </TableBody>
       </Table>
     </Paper>
+    </>
   );
 }
 
  export default Assessment_Table
 
-
-//  <CustomTableCell {...{ row, name: "first_assessment", onChange }} />
-//               <CustomTableCell {...{ row, name: "second_assessment", onChange }} />
-//               <CustomTableCell {...{ row, name: "third_assessment", onChange }} />
-//               <CustomTableCell {...{ row, name: "fourth_assessment", onChange }} />
-//               <CustomTableCell {...{ row, name: "fifth_assessment", onChange }} />
-//               <CustomTableCell {...{ row, name: "final_assessment", onChange }} /> 
-              
-              
-//               <CustomTableCell {...{ row, name: "total", onChange }} />
-//               <CustomTableCell {...{ row, name: "letter_grade", onChange }} />

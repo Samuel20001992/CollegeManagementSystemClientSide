@@ -99,6 +99,12 @@ function stableSort(array, comparator) {
 
 const headCells = [
   {
+    id: 'id',
+    numeric: false,
+    disablePadding: false,
+    label: '#',
+  },
+  {
     id: 'student_id',
     numeric: false,
     disablePadding: true,
@@ -148,17 +154,7 @@ function EnhancedTableHead(props) {
   return (
     <TableHead>
       <TableRow>
-        <TableCell padding="checkbox">
-          <Checkbox
-            color="primary"
-            indeterminate={numSelected > 0 && numSelected < rowCount}
-            checked={rowCount > 0 && numSelected === rowCount}
-            onChange={onSelectAllClick}
-            inputProps={{
-              'aria-label': 'select all desserts',
-            }}
-          />
-        </TableCell>
+        
         {headCells.map((headCell) => (
           <TableCell
             key={headCell.id}
@@ -220,18 +216,7 @@ const EnhancedTableToolbar = (props) => {
         </Typography>
       ) : (
       <div>
-        <Typography
-          // sx={{ flex: '1 1 100%' }}
-          variant="h6"
-          id="tableTitle"
-          component="div"
-          style={{float:'left'}}
-        >
-          Drop Table
-        </Typography>
-          <Link to='/Add_Drop' style={{textDecoration:'none'}}>
-                <Button variant='contained'  style={{float:'right', marginLeft:'900px'}} color='primary'>Add New</Button>       
-            </Link>       
+            
       </div>
         
       )}
@@ -370,26 +355,19 @@ export default function Drop_Table() {
                       key={row.name}
                       selected={isItemSelected}
                     >
-                      <TableCell padding="checkbox">
-                        <Checkbox
-                          color="primary"
-                          checked={isItemSelected}
-                          inputProps={{
-                            'aria-labelledby': labelId,
-                          }}
-                        />
-                      </TableCell>
+                      
+                      <TableCell align="left">{row.drop_id}</TableCell>
                       <TableCell align="left">{row.student_id}</TableCell>
                       <TableCell align="left">{row.course_code}</TableCell>
-                      <TableCell align="left">{row.academic_year}</TableCell>
+                      <TableCell align="left">{row.accademic_year}</TableCell>
                       <TableCell align="left">{row.semester}</TableCell>
                       <TableCell align="left">{row.date}</TableCell>
                       <TableCell align="left">
-                        <VisibilityIcon color="primary" />
+                        {/* <VisibilityIcon color="primary" /> */}
                         <DeleteIcon color="primary" onClick={(e) => {
                           handleDelete(row._id)
                         }} />
-                        <EditIcon color="primary"/>
+                        {/* <EditIcon color="primary"/> */}
                       </TableCell>
                     </TableRow>
                   );

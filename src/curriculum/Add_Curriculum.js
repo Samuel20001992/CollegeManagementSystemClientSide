@@ -76,33 +76,18 @@ function Add_Curriculum() {
     
     
     return (
-        <div style={{
-            backgroundColor: 'white', height: '100vh'}}>
-            <Header />
+        <div>
         <form autoComplete="off" noValidate onSubmit={handleSubmit}>
-          <CardContent
-            component="form"
-            noValidate
-            autoComplete="off"
-            // className='d-flex'  
-                style={{
-                marginTop:'50px',
-                // marginLeft: '20px',
-                // marginRight: '20px',
-                marginBottom: '50px',
-                    backgroundColor: 'white',
-                //  borderRadius:'2em'
-            }}
-        >
-            <Grid container spacing={3}>
+        <CardContent style={{backgroundColor:'white', margin:'6px'}}>
+            <Grid container spacing={1} style={{padding:'6px'}}>
                 <Grid item xs={6} md={4} sm={6}>
-                        < TextField id="outlined-basic" style={{ width: '300px', align: 'left' }} label="Faculty" variant="outlined" size="small"
+                        < TextField id="outlined-basic" style={{ width: '230px', align: 'left' }} label="Faculty" variant="outlined" size="small"
                         name='faculty'
                                 onChange={(e) => setCurriculumData({ ...curriculumData, faculty: e.target.value })}
                         />
                     </Grid>
                     <Grid item xs={6} md={4} sm={6}>
-                <FormControl  style={{ float:'left', marginLeft:'90px', width:'300px'}}   size="small">
+                <FormControl  style={{ float:'left', width:'230px'}}   size="small">
                     <InputLabel id="demo-simple-select-label">Department</InputLabel>
                     <Select
                     labelId="demo-simple-select-label"
@@ -113,7 +98,7 @@ function Add_Curriculum() {
                                 >
                          {
                                 departments.map((department) => {
-                                    <MenuItem value={department.phone}>{department.phone}</MenuItem>
+                                    <MenuItem value={department.department_name}>{department.department_name}</MenuItem>
                                 })        
                             }
                           
@@ -123,7 +108,7 @@ function Add_Curriculum() {
                 </FormControl>
                 </Grid>
                 <Grid item xs={6} md={4} sm={6}>
-                <FormControl  style={{ float:'left', marginLeft:'90px', width:'300px'}}   size="small">
+                <FormControl  style={{ float:'left', width:'230px'}}   size="small">
                     <InputLabel id="demo-simple-select-label">Admission Classification</InputLabel>
                     <Select
                     labelId="demo-simple-select-label"
@@ -139,7 +124,7 @@ function Add_Curriculum() {
                 </FormControl>
                 </Grid>
                 <Grid item xs={6} md={4} sm={6}>
-                <FormControl  style={{ float:'left', marginLeft:'90px', width:'300px'}}   size="small">
+                <FormControl  style={{ float:'left', width:'230px'}}   size="small">
                     <InputLabel id="demo-simple-select-label">Program</InputLabel>
                     <Select
                     labelId="demo-simple-select-label"
@@ -157,37 +142,41 @@ function Add_Curriculum() {
                 </Grid>
                 
                 <Grid item xs={6} md={4} sm={6}>
-                        < TextField id="outlined-basic" style={{ width: '300px', align: 'left' }} label="Field of Study" variant="outlined" size="small"
+                        < TextField id="outlined-basic" style={{ width: '230px', align: 'left' }} label="Field of Study" variant="outlined" size="small"
                         name='field_of_studty'
                                 onChange={(e) => setCurriculumData({ ...curriculumData, field_of_study: e.target.value })}
                         />
                 </Grid>
                 <Grid item xs={6} md={4} sm={6}>
-                        < TextField id="outlined-basic" style={{ width: '300px', align: 'left' }} label="Nomenclature in Engilsh" variant="outlined" size="small"
+                        < TextField id="outlined-basic" style={{ width: '230px', align: 'left' }} label="Nomenclature in Engilsh" variant="outlined" size="small"
                         name='nomenclecture_in_engilsh'
                                 onChange={(e) => setCurriculumData({ ...curriculumData, Nomenclature_in_engilsh: e.target.value })}
                         />
                 </Grid>
                 <Grid item xs={6} md={4} sm={6}>
-                        < TextField id="outlined-basic" style={{ width: '300px', align: 'left' }} label="Nomenclature in Amharic" variant="outlined" size="small"
+                        < TextField id="outlined-basic" style={{ width: '230px', align: 'left' }} label="Nomenclature in Amharic" variant="outlined" size="small"
                         name='nomenclecture_in_amharic'
                                 onChange={(e) => setCurriculumData({ ...curriculumData, Nomenclature_in_amharic: e.target.value })}
                         />
                 </Grid>
                 <Grid item xs={6} md={4} sm={6}>
-                        < TextField id="outlined-basic" style={{ width: '300px', align: 'left' }} label="Total Credit" variant="outlined" size="small"
+                        < TextField id="outlined-basic" style={{ width: '230px', align: 'left' }} label="Total Credit" variant="outlined" size="small"
                         name='total_credit'
                                 onChange={(e) => setCurriculumData({ ...curriculumData, total_credit: e.target.value })}
                         />
                     </Grid>
                     <Grid item xs={6} md={4} sm={6}>
-                        < TextField id="outlined-basic" style={{ width: '300px', align: 'left' }} label="Curriculum Name" variant="outlined" size="small"
+                        < TextField id="outlined-basic" style={{ width: '230px', align: 'left' }} label="Curriculum Name" variant="outlined" size="small"
                         name='curriculum_name'
                                 onChange={(e) => setCurriculumData({ ...curriculumData, curriculum_name: e.target.value })}
                         />
                     </Grid>
+                    </Grid>
+                    </CardContent>
+                    <CardContent style={{backgroundColor:'white', margin:'6px'}}>
+            <Grid container spacing={1} style={{padding:'6px'}}>
                      <Grid item xs={6} md={4} sm={6}>
-                <FormControl  style={{ float:'left', marginLeft:'90px', width:'300px'}}   size="small">
+                <FormControl  style={{ float:'left', width:'230px'}}   size="small">
                     <InputLabel id="demo-simple-select-label">Curriculum Type</InputLabel>
                     <Select
                     labelId="demo-simple-select-label"
@@ -203,43 +192,43 @@ function Add_Curriculum() {
                 </FormControl>
                 </Grid>
                     <Grid item xs={6} md={4} sm={6}>
-                        < TextField id="outlined-basic" style={{ width: '300px', align: 'left' }} label="Duration" variant="outlined" size="small"
+                        < TextField id="outlined-basic" style={{ width: '230px', align: 'left' }} label="Duration" variant="outlined" size="small"
                         name='duration'
                                 onChange={(e) => setCurriculumData({ ...curriculumData, duration: e.target.value })}
                         />
                     </Grid>
                     <Grid item xs={6} md={4} sm={6}>
-                        < TextField id="outlined-basic" style={{ width: '300px', align: 'left' }} label="Number of Semester" variant="outlined" size="small"
+                        < TextField id="outlined-basic" style={{ width: '230px', align: 'left' }} label="Number of Semester" variant="outlined" size="small"
                         name='number_of_semester'
                                 onChange={(e) => setCurriculumData({ ...curriculumData, number_of_semester: e.target.value })}
                         />
                     </Grid>
                     <Grid item xs={6} md={4} sm={6}>
-                        < TextField id="outlined-basic" style={{ width: '300px', align: 'left' }} label="Approved Year" variant="outlined" size="small"
+                        < TextField id="outlined-basic" style={{ width: '230px', align: 'left' }} label="Approved Year" variant="outlined" size="small"
                         name='approved_year'
                                 onChange={(e) => setCurriculumData({ ...curriculumData, approved_year: e.target.value })}
                         />
                     </Grid>
                     <Grid item xs={6} md={4} sm={6}>
-                        < TextField id="outlined-basic" style={{ width: '300px', align: 'left' }} label="Minimum Credit" variant="outlined" size="small"
+                        < TextField id="outlined-basic" style={{ width: '230px', align: 'left' }} label="Minimum Credit" variant="outlined" size="small"
                         name='minimum_credit'
                                 onChange={(e) => setCurriculumData({ ...curriculumData, minimum_credit: e.target.value })}
                         />
                     </Grid>
                     <Grid item xs={6} md={4} sm={6}>
-                        < TextField id="outlined-basic" style={{ width: '300px', align: 'left' }} label="Academic Commission Minute" variant="outlined" size="small"
+                        < TextField id="outlined-basic" style={{ width: '230px', align: 'left' }} label="Academic Commission Minute" variant="outlined" size="small"
                         name='academic_commision_minute'
                                 onChange={(e) => setCurriculumData({ ...curriculumData, academic_commission_minute_number: e.target.value })}
                         />
                     </Grid>
                     <Grid item xs={6} md={4} sm={6}>
-                        < TextField id="outlined-basic" style={{ width: '300px', align: 'left' }} label="Senet Minute Number" variant="outlined" size="small"
+                        < TextField id="outlined-basic" style={{ width: '230px', align: 'left' }} label="Senet Minute Number" variant="outlined" size="small"
                         name='senete_minute_number'
                                 onChange={(e) => setCurriculumData({ ...curriculumData, senate_minute_number: e.target.value })}
                         />
                     </Grid>
                     <Grid item xs={6} md={4} sm={6}>
-                        < TextField id="outlined-basic" style={{ width: '300px', align: 'left' }} label="Curriculum Document" variant="outlined" size="small"
+                        < TextField id="outlined-basic" style={{ width: '230px', align: 'left' }} label="Curriculum Document" variant="outlined" size="small"
                         name='curriculum_document'
                                 onChange={(e) => setCurriculumData({ ...curriculumData, curriculum_document: e.target.value })}
                         />
@@ -247,7 +236,7 @@ function Add_Curriculum() {
             </Grid>
             </CardContent>
             
-            <Grid container spacing={3} style={{marginTop:'20px', backgroundColor:'white', padding:'20px'}}>
+            <Grid container spacing={3} style={{marginTop:'5px', backgroundColor:'white'}}>
               <Grid item xs={6}>
                 <Button variant='contained' color='primary' style={{width:'200px'}} type='submit'>Submit</Button>      
               </Grid>

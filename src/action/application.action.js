@@ -42,3 +42,15 @@ export const deleteApplication = (id) => async (dispatch) => {
     console.log(error.message);
   }
 };
+
+
+export const getOneApplication = (application_id) => async (dispatch) => {
+  try {
+    const { data } = await api.fetchOne(application_id);
+    // console.log(data);
+    dispatch({ type: FETCH_ALL, payload: data });
+    console.log(data);
+  } catch (error) {
+    console.log(error.message);
+  }
+};
